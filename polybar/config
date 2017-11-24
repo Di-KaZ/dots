@@ -1,0 +1,180 @@
+[colors]
+
+black       = #67242424
+green       = #47AA46
+lightgreen  = #C7E58F
+orange      = #DB995A
+white       = ${xrdb:color3}
+
+[bar/base]
+
+monitor     = eDP-1
+font-0      = "Monaco:size=11"
+font-1      = "SauceCodePro Nerd Font:size=14"
+padding     = 0
+enable-ipc  = true
+fixed center= true
+wm-restack  = i3
+override-redirect = true
+locale = en_US.UTF-8
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+[bar/top]
+
+inherit = bar/base
+background = #89000000
+modules-center = date
+modules-left = temp volume
+modules-right = battery battery2
+offset-x = 280
+offset-y = 5
+height = 25
+width = 70%
+#radius-bottom = 20
+foreground = ${colors.white}
+#background = #00383D39
+border-size = 1
+border-color = ${colors.white}
+[bar/bottom]
+
+separator = 
+inherit = bar/base
+bottom = true
+height = 30
+modules-right = cpu memory backlight wlan
+modules-left = i3
+background = #89000000
+foreground = ${colors.white}
+#border-color = ${colors.lightgreen}
+border-size = 1
+border-color = ${colors.white}
+#width = 95%
+#offset-x = 40
+[settings]
+
+format-padding = 2
+screenchange-reload = true
+
+[module/i3]
+
+type = internal/i3
+format = <label-state> <label-mode>
+format-padding = 0
+pin-workspaces = false
+index-sort = false
+wrapping-scroll = false
+format-foreground = ${colors.black}
+label-mode-padding = 4
+label-mode-background = ${colors.white}
+label-focused = %index%
+label-focused-background = ${colors.white}
+label-focused-foreground = #000000
+label-unfocused = 
+#label-focused-background = ${colors.white}
+label-focused-padding = 4
+label-urgent = !%index%!
+label-urgent-padding = 2
+#label-urgent-background = ${colors.orange}
+enable-scroll = true
+
+[module/backlight]
+type = internal/backlight
+
+card = intel_backlight
+format = <label>
+format-prefix = " "
+
+[module/cpu]
+
+type = internal/cpu
+interval= 5
+
+format-prefix = "   "
+
+[module/memory]
+type = internal/memory
+interval = 5
+format-prefix ="  "
+
+[module/wlan]
+type = internal/network
+interface = wlp58s0
+interval = 5
+format-connected = <label-connected>
+label-connected = %downspeed%    %essid%  
+label-disconnected = Disconnected
+format-disconnected = <label-disconnected>
+
+[module/date]
+
+type = internal/date
+interval = 1
+date = %d | %m | %Y
+date-alt = %d | %m | %Y
+time = %H:%M
+time-alt = %H:%M:%S
+format-foreground = #000000
+format-background = ${colors.white}
+label = %date% %time% 
+
+[module/volume]
+
+type = internal/volume
+format-volume = <bar-volume>
+format-volume-prefix = " "
+format-volume-prefix-foreground = ${colors.white}
+label-muted = "Mute"
+bar-volume-width = 10
+bar-volume-gradient = true
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adaptater = AC
+full-at = 98
+empty-at = 15
+
+format-charging                     = <animation-charging>
+animation-charging-0                = 
+animation-charging-1                = 
+animation-charging-2                = 
+animation-charging-3                = 
+animation-charging-4                = 
+animation-charging-framerate        = 700
+format-discharging                  = <ramp-capacity>
+ramp-capacity-0                     =" "
+ramp-capacity-1                     =" "
+ramp-capacity-2                     =" "
+ramp-capacity-3                     =" "
+ramp-capacity-4                     =" "
+
+label-full                          =" "
+format-charging-prefix              = " "
+
+[module/battery2]
+
+inherit                             = module/battery
+battery                             = BAT1
+[module/temp]
+
+type                                = internal/temperature
+thermal-zone                        = 0
+warn-temperature                    = 60
+
+format-underline                   = ${colors.orange}
+label-warn                          = "%{F#e94b4f}%{F}"
+format                              = <ramp>
+ramp-0                              = 
+ramp-1                              = 
+ramp-2                              = 
+ramp-3                              = 
+ramp-4                              = 
+
+; vim:ft=dosini
