@@ -1,2 +1,2 @@
 # Dotfiles
-My i3 + polybar config
+![preview-clean](https://github.com/Di-KaZ/Dotfiles/blob/master/screenshot/Screenshot_1.png)
