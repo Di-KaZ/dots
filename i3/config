@@ -6,7 +6,7 @@ exec_always "setxkbmap fr"
 exec_always "wal -i ~/Pictures/#Wallpaper"
 exec_always "sh ~/.config/i3/sakura.sh"
 exec_always "compton"
-exec_always "xrdb -merge .Xressources"
+exec "xrdb -merge .Xressources"
 ## set special keys
 set $mod Mod4
 set $alt Mod1
@@ -14,8 +14,8 @@ set $win Mod4
 set $ctrl Control
 
 ## gaps
-gaps outer 20
-gaps inner 25
+gaps outer 0
+gaps inner 0
 
 ## colors
 client.focused #FFFFFF #FFFFFF #FFFFFF #FFFFFF 
@@ -24,7 +24,7 @@ client.placeholder #FFFFFF #FFFFFF #FFFFFF #FFFFFF
 client.urgent  #FFFFFF #FFFFFF #FFFFFF #FFFFFF  
 
 ## borders and disable window title (who cares anyway)
-new_window none
+new_window pixel 0
 #new_window none
 font pango:DejaVu Sans Mono 12
 

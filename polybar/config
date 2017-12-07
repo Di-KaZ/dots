@@ -5,50 +5,51 @@ green       = #47AA46
 lightgreen  = #C7E58F
 orange      = #DB995A
 white       = ${xrdb:color3}
+another     = ${xrdb:color5}
 
 [bar/base]
 
 monitor     = eDP-1
-font-0      = "Monaco:size=11"
+font-0      = "FORCED SQUARE:pixelsize=15"
 font-1      = "SauceCodePro Nerd Font:size=14"
 padding     = 0
 enable-ipc  = true
 fixed center= true
 wm-restack  = i3
-override-redirect = true
+override-redirect = false
 locale = en_US.UTF-8
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
 
-[bar/top]
+;[bar/top]
 
-inherit = bar/base
-background = #89000000
-modules-center = date
-modules-left = temp volume
-modules-right = battery battery2
-offset-x = 280
-offset-y = 5
-height = 25
-width = 70%
+;inherit = bar/base
+;background = #89000000
+;modules-center = date
+;modules-left = temp volume
+;modules-right = battery battery2
+;offset-x = 280
+;offset-y = 5
+;height = 25
+;width = 70%
 #radius-bottom = 20
-foreground = ${colors.white}
+;foreground = ${colors.white}
 #background = #00383D39
-border-size = 1
+border-top-size = 1
 border-color = ${colors.white}
 [bar/bottom]
 
-separator = 
+;separator = 
 inherit = bar/base
 bottom = true
-height = 30
-modules-right = cpu memory backlight wlan
-modules-left = i3
-background = #89000000
-foreground = ${colors.white}
-#border-color = ${colors.lightgreen}
-border-size = 1
-border-color = ${colors.white}
+height = 20
+modules-center = i3
+modules-right  = date battery battery2
+modules-left = wlan cpu memory
+background = ${colors.white}
+foreground = #000
+border-top-size = 3
+border-color = ${colors.another}
 #width = 95%
 #offset-x = 40
 [settings]
@@ -61,14 +62,14 @@ screenchange-reload = true
 type = internal/i3
 format = <label-state> <label-mode>
 format-padding = 0
-pin-workspaces = false
-index-sort = false
+pin-workspaces = true
+index-sort = true
 wrapping-scroll = false
 format-foreground = ${colors.black}
 label-mode-padding = 4
 label-mode-background = ${colors.white}
 label-focused = %index%
-label-focused-background = ${colors.white}
+label-focused-background = ${colors.another}
 label-focused-foreground = #000000
 label-unfocused = 
 #label-focused-background = ${colors.white}
@@ -76,8 +77,7 @@ label-focused-padding = 4
 label-urgent = !%index%!
 label-urgent-padding = 2
 #label-urgent-background = ${colors.orange}
-enable-scroll = true
-
+label-focused-underline = #FFFFFF
 [module/backlight]
 type = internal/backlight
 
@@ -90,19 +90,21 @@ format-prefix = " "
 type = internal/cpu
 interval= 5
 
-format-prefix = "   "
+format-prefix = "CPU "
 
 [module/memory]
 type = internal/memory
 interval = 5
-format-prefix ="  "
+format-prefix ="MEM "
 
 [module/wlan]
 type = internal/network
 interface = wlp58s0
 interval = 5
+format-connected-background = ${colors.white}
+format-disconnected-background = ${colors.white}
 format-connected = <label-connected>
-label-connected = %downspeed%    %essid%  
+label-connected =  %essid%    %downspeed% 
 label-disconnected = Disconnected
 format-disconnected = <label-disconnected>
 
@@ -140,7 +142,8 @@ battery = BAT0
 adaptater = AC
 full-at = 98
 empty-at = 15
-
+format-charging-background = ${colors.white}
+format-discharging-background = ${colors.white}
 format-charging                     = <animation-charging>
 animation-charging-0                = 
 animation-charging-1                = 
@@ -156,7 +159,6 @@ ramp-capacity-3                     =" "
 ramp-capacity-4                     =" "
 
 label-full                          =" "
-format-charging-prefix              = " "
 
 [module/battery2]
 
