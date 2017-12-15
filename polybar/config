@@ -35,23 +35,23 @@ scroll-down = i3wm-wsprev
 #radius-bottom = 20
 ;foreground = ${colors.white}
 #background = #00383D39
-border-top-size = 1
-border-color = ${colors.white}
+#border-top-size = 1
+#border-color = ${colors.white}
 [bar/bottom]
 
 ;separator = 
 inherit = bar/base
-bottom = true
-height = 20
+#bottom = true
+height = 40
 modules-center = i3
 modules-right  = date battery battery2
 modules-left = wlan cpu memory
 background = ${colors.white}
 foreground = #000
-border-top-size = 3
-border-color = ${colors.another}
-#width = 95%
-#offset-x = 40
+border-top-size = 10
+border-left-size = 100
+#border-color = ${colors.another}
+width = 95%
 [settings]
 
 format-padding = 2

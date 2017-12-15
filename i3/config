@@ -1,6 +1,7 @@
 ## Original comments from sample config file are marked with a #, my personal comments
 ## are marked with a ##
-
+set_from_resource $linefocused color5
+set_from_resource $unfoc color3
 ## execute on start
 exec_always "setxkbmap fr"
 exec_always "wal -i ~/Pictures/#Wallpaper"
@@ -14,17 +15,17 @@ set $win Mod4
 set $ctrl Control
 
 ## gaps
-gaps outer 0
-gaps inner 0
+gaps outer 5
+gaps inner 15
 
 ## colors
-client.focused #FFFFFF #FFFFFF #FFFFFF #FFFFFF 
-client.unfocused argb: #121212 #121212 #121212 #121212
+client.focused $linefocused $linefocused $linefocused $linefocused $linefocused 
+client.unfocused $unfoc $unfoc $unfoc $unfoc 
 client.placeholder #FFFFFF #FFFFFF #FFFFFF #FFFFFF 
 client.urgent  #FFFFFF #FFFFFF #FFFFFF #FFFFFF  
 
 ## borders and disable window title (who cares anyway)
-new_window pixel 0
+new_window pixel 20
 #new_window none
 font pango:DejaVu Sans Mono 12
 
@@ -32,7 +33,7 @@ font pango:DejaVu Sans Mono 12
 bindsym $mod+p exec i3-sensible-terminal -e htop
 bindsym $ctrl+Shift+Escape exec i3-sensible-terminal -e htop
 bindsym $alt+$ctrl+Delete exec i3-sensible-terminal -e htop
-
+bindsym $mod+Shift+d exec ~/Discord/Discord
 ## Screenshot 
 bindsym Print exec "scrot -e 'xclip -selection clipboard -t image/png -i $f && mv $f ~/Pictures/Screenshots/'"
 bindsym --release $ctrl+Print exec "scrot -s -e 'xclip -selection clipboard -t image/png -i $f && mv $f ~/Pictures/Screenshots/'" 
@@ -72,7 +73,7 @@ bindsym $mod+d exec rofi -show run -lines 1 -eh 2 -width 100 -padding 470 -bw 0 
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 ## This, for example, can find Discord while regular dmenu can not
-bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+Shift+m exec --no-startup-id i3-dmenu-desktop
 ## rofi
 bindsym $mod+i exec rofi -show run
 bindsym $mod+space exec rofi -show run
