@@ -1,57 +1,49 @@
 [colors]
 
-black       = #67242424
-green       = #47AA46
-lightgreen  = #C7E58F
-orange      = #DB995A
-white       = ${xrdb:color3}
-another     = ${xrdb:color5}
+black       = #043E4A
+brown       = #CA7F57
 
 [bar/base]
 
 monitor     = eDP-1
-font-0      = "FORCED SQUARE:pixelsize=15"
+font-0      = "DotMatrix:pixelsize=15"
 font-1      = "SauceCodePro Nerd Font:size=14"
+module-margin = 0
 padding     = 0
 enable-ipc  = true
 fixed center= true
-wm-restack  = i3
 override-redirect = false
 locale = en_US.UTF-8
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
 
-;[bar/top]
+[bar/top]
 
-;inherit = bar/base
-;background = #89000000
-;modules-center = date
-;modules-left = temp volume
-;modules-right = battery battery2
-;offset-x = 280
-;offset-y = 5
-;height = 25
-;width = 70%
-#radius-bottom = 20
-;foreground = ${colors.white}
-#background = #00383D39
-#border-top-size = 1
-#border-color = ${colors.white}
+inherit = bar/base
+bottom = false
+height = 25
+modules-center  = spotify
+foreground = ${colors.brown}
+background = #043E4A
+border-left-size = 600
+width = 70%
+radius-bottom = 30
+
 [bar/bottom]
 
-;separator = 
 inherit = bar/base
-#bottom = true
+bottom = true
 height = 40
+modules-left  = date cpu memory backlight volume
+modules-right = battery battery2 wlan
 modules-center = i3
-modules-right  = date battery battery2
-modules-left = wlan cpu memory
-background = ${colors.white}
-foreground = #000
-border-top-size = 10
-border-left-size = 100
-#border-color = ${colors.another}
-width = 95%
+background = ${colors.brown}
+foreground = #043E4A
+border-bottom-size = 10
+border-left-size = 150
+radius = 20
+width = 90%
+
 [settings]
 
 format-padding = 2
@@ -61,89 +53,99 @@ screenchange-reload = true
 
 type = internal/i3
 format = <label-state> <label-mode>
-format-padding = 0
+format-padding = 2
 pin-workspaces = true
 index-sort = true
 wrapping-scroll = false
 format-foreground = ${colors.black}
-label-mode-padding = 4
-label-mode-background = ${colors.white}
-label-focused = %index%
-label-focused-background = ${colors.another}
-label-focused-foreground = #000000
-label-unfocused = 
-#label-focused-background = ${colors.white}
-label-focused-padding = 4
+label-mode-background = ${colors.brown}
+label-mode-padding = 0
+label-focused = 
+label-focused-padding = 1
+label-unfocused-padding = 1
+label-unfocused = ●
 label-urgent = !%index%!
 label-urgent-padding = 2
-#label-urgent-background = ${colors.orange}
-label-focused-underline = #FFFFFF
-[module/backlight]
-type = internal/backlight
 
-card = intel_backlight
+[module/backlight]
+
+type = internal/backlight
 format = <label>
 format-prefix = " "
+format-prefix-foreground = #707880
+card = intel_backlight
 
 [module/cpu]
 
 type = internal/cpu
 interval= 5
-
-format-prefix = "CPU "
+format-prefix = " "
+format-prefix-foreground = #035E7B
 
 [module/memory]
+
 type = internal/memory
 interval = 5
-format-prefix ="MEM "
+format-prefix =" "
+format-prefix-foreground = #9646CB
 
 [module/wlan]
+
 type = internal/network
 interface = wlp58s0
 interval = 5
-format-connected-background = ${colors.white}
-format-disconnected-background = ${colors.white}
+format-connected-background = #043E43
+format-disconnected-background = #043E43
+format-connected-foreground = ${colors.brown}
+format-disconnected-foreground = ${colors.brown}
 format-connected = <label-connected>
-label-connected =  %essid%    %downspeed% 
+label-connected = %essid%
 label-disconnected = Disconnected
 format-disconnected = <label-disconnected>
+format-connected-underline = #03F242
 
 [module/date]
 
 type = internal/date
 interval = 1
-date = %d | %m | %Y
-date-alt = %d | %m | %Y
 time = %H:%M
 time-alt = %H:%M:%S
-format-foreground = #000000
-format-background = ${colors.white}
-label = %date% %time% 
+format-foreground = #2f343f
+format-background = ${colors.brown}
+format-prefix = " "
+format-prefix-foreground = #FF0000
+label = %time%
+
+[module/spotify]
+
+type = custom/script
+interval = 1
+format-prefix = "    "
+format = <label>
+exec = python ~/.config/polybar/spotify_status.py
+format-underline = ${colors.brown}
 
 [module/volume]
 
 type = internal/volume
-format-volume = <bar-volume>
-format-volume-prefix = " "
-format-volume-prefix-foreground = ${colors.white}
-label-muted = "Mute"
-bar-volume-width = 10
-bar-volume-gradient = true
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
+format-volume = <label-volume>
+format-volume-prefix = "♫ "
+format-volume-prefix-foreground = #0000FF
+label-muted = "♫ Mute"
 
 [module/battery]
+
 type = internal/battery
 battery = BAT0
 adaptater = AC
 full-at = 98
 empty-at = 15
-format-charging-background = ${colors.white}
-format-discharging-background = ${colors.white}
+format-charging-foreground = ${colors.brown}
+format-discharging-foreground = ${colors.brown}
+format-full-foreground = ${colors.brown}
+format-charging-background = ${colors.black}
+format-discharging-background = ${colors.black}
+format-full-background = ${colors.black}
 format-charging                     = <animation-charging>
 animation-charging-0                = 
 animation-charging-1                = 
@@ -164,6 +166,7 @@ label-full                          =" "
 
 inherit                             = module/battery
 battery                             = BAT1
+
 [module/temp]
 
 type                                = internal/temperature
@@ -178,5 +181,3 @@ ramp-1                              = 
 ramp-2                              = 
 ramp-3                              = 
 ramp-4                              = 
-
-; vim:ft=dosini

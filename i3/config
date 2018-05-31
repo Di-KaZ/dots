@@ -1,10 +1,10 @@
 ## Original comments from sample config file are marked with a #, my personal comments
 ## are marked with a ##
-set_from_resource $linefocused color5
-set_from_resource $unfoc color3
+set $linefocused #CA7F57
+set_from_resource $unfoc #043E4A
 ## execute on start
 exec_always "setxkbmap fr"
-exec_always "wal -i ~/Pictures/#Wallpaper"
+#exec_always "sh ~/.config/initbg.sh"
 exec_always "sh ~/.config/i3/sakura.sh"
 exec_always "compton"
 exec "xrdb -merge .Xressources"
@@ -14,37 +14,39 @@ set $alt Mod1
 set $win Mod4
 set $ctrl Control
 
+## set default apps
+set $term urxvt256c
+set $filemanager nautilus -w
+
 ## gaps
-gaps outer 5
-gaps inner 15
+gaps outer 25
+gaps inner 20
 
 ## colors
-client.focused $linefocused $linefocused $linefocused $linefocused $linefocused 
-client.unfocused $unfoc $unfoc $unfoc $unfoc 
-client.placeholder #FFFFFF #FFFFFF #FFFFFF #FFFFFF 
-client.urgent  #FFFFFF #FFFFFF #FFFFFF #FFFFFF  
+client.focused $linefocused $linefocused $linefocused
+client.unfocused $unfoc $unfoc $unfoc
+
+## wp
+bindsym $mod+b exec sh ~/.config/initbg.sh
 
 ## borders and disable window title (who cares anyway)
-new_window pixel 20
-#new_window none
+new_window pixel 4
 font pango:DejaVu Sans Mono 12
 
 ## htop
-bindsym $mod+p exec i3-sensible-terminal -e htop
-bindsym $ctrl+Shift+Escape exec i3-sensible-terminal -e htop
-bindsym $alt+$ctrl+Delete exec i3-sensible-terminal -e htop
-bindsym $mod+Shift+d exec ~/Discord/Discord
+bindsym $mod+p exec $term -e htop
+bindsym $ctrl+Shift+Escape exec $term -e htop
+bindsym $alt+$ctrl+Delete exec $term -e htop
+
 ## Screenshot 
 bindsym Print exec "scrot -e 'xclip -selection clipboard -t image/png -i $f && mv $f ~/Pictures/Screenshots/'"
 bindsym --release $ctrl+Print exec "scrot -s -e 'xclip -selection clipboard -t image/png -i $f && mv $f ~/Pictures/Screenshots/'" 
 
 ## Lock
-bindsym $mod+l exec ~/.config/i3/lock.sh.bak 
+bindsym $mod+l exec sh ~/.config/i3/lock.sh.blurover
 
 ## Rename workspace
-##bindsym $mod+n exec i3-input -F 'rename workspace to "%s"' -P 'New name:'
-##rename workspace number 1 to "Terminal"
-##rename workspace number 10 to "Spotify"
+bindsym $mod+n exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
 
 ## Change brightness
 bindsym XF86MonBrightnessUp exec light -A 10
@@ -59,26 +61,27 @@ bindsym XF86AudioMute exec amixer -q set Master toggle
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvt256c-ml
+bindsym $mod+Return exec $term
 
 # kill focused window
 bindsym $mod+Shift+q kill
 bindsym $alt+F4 kill
 
+## start Explorer
+bindsym $win+e exec $filemanager
 
 # start dmenu (a program launcher)
-#bindsym $mod+d exec dmenu_run
-bindsym $mod+d exec rofi -show run -lines 1 -eh 2 -width 100 -padding 470 -bw 0 -hlfg "#9575cd" -font "Monaco Display 30"
+bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 ## This, for example, can find Discord while regular dmenu can not
-bindsym $mod+Shift+m exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop
 ## rofi
 bindsym $mod+i exec rofi -show run
-bindsym $mod+space exec rofi -show run
-#change bg
-bindsym $mod+b exec "wal -i ~/Pictures/#Wallpaper" 
+bindsym $mod+space exec sh ~/.config/rofi/launch.sh
+# bindsym Super_L exec sh ~/.config/rofi/launch.sh
+
 # change focus
 # bindsym $mod+j focus left
 # bindsym $mod+k focus down
@@ -90,6 +93,7 @@ bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
+bindsym $alt+Tab focus right
 
 # move focused window
 # bindsym $mod+Shift+j move left
@@ -116,8 +120,9 @@ bindsym $mod+f fullscreen toggle
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 #bindsym $mod+d layout tabbed
-bindsym $mod+t layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+t layout  tabbed
+## bindsym $mod+e layout toggle split
+bindsym $mod+y layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -208,7 +213,8 @@ bindsym $mod+g mode "gaps"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-       output primary
+        output primary
         #status_command i3status
         i3bar_command ~/.config/polybar/launch.sh
 }
+
