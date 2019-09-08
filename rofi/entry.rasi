@@ -1,0 +1,32 @@
+/* -*- mode: css; -*- */
+
+/***** Rofi / RESLOVED ****************************/
+
+configuration {
+window-format: "{n}";
+}
+
+* {
+background-color:      #1b1d1e00;
+border-color:          #ffffff44;
+text-color:            #ffffffff;
+font:                  "Product Sans Bold 14";
+}
+
+#window {
+anchor:     north;
+location:   north;
+width:      100%;
+padding:    14px 36px 6px 44px;
+children:   [ horibox ];
+}
+
+#horibox {
+orientation: horizontal;
+children:   [ entry ];
+}
+
+#entry {
+expand:     false;
+width:      100%;
+}
