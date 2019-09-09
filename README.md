@@ -1,3 +1,11 @@
-# Dotfiles
-Here is my daily setup, it is subject to change a lot since I love ricing.
-when I got time I'm going to do a best readme
+Dotfiles
+=======
+
+Here are my dotfiles for my Thinkpad T470s.
+
+Programs Used
+============
+
+| Program               | Use     |
+| :-------------------: | :-----: |
+| i3-gaps-rounded       |   Tilling windows manager with a twist rounded-corner  |
