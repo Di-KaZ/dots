@@ -13,6 +13,7 @@ Programs Used
 ============
 
 | Program | Use |
+| :-: | :-: |
 | [i3-gaps-rounded](https://aur.archlinux.org/packages/i3-gaps-rounded-git/) | Tilling windows manager with a twist rounded corner |
 | [Compton-kawase-blur](https://github.com/GabrielTenma/compton-kawase-blur) | Composite manager for transparency and blur windows |
 | [Polybar](https://github.com/polybar/polybar) | Status bar looking cool with i3 |
