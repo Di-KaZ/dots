@@ -8,6 +8,7 @@ set $mod Mod4
 
 exec --no-startup-id wal -i Downloads/st-cygnus-gretel-ex05-v2.jpg
 
+#exec_always --no-startup-id ~/.config/dunst/wal.sh
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 new_window pixel 0
 new_float normal
@@ -59,7 +60,7 @@ bindsym $mod+Shift+F3 exec gksu pcmanfm
 bindsym $mod+F5 exec terminal -e 'mocp'
 bindsym $mod+t exec --no-startup-id pkill compton
 bindsym $mod+Ctrl+t exec --no-startup-id compton --blur-method kawase --blur-strength 5 -b
-bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
+#bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
