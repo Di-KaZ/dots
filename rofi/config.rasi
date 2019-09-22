@@ -1,48 +1,21 @@
-/* -*- mode: css; -*- */
-
-/***** Rofi / RESLOVED ****************************/
-
 configuration {
-window-format: "{n}";
+  modi: "combi,window,drun,run";
+  lines: 6;
+  show-icons: true;
+  terminal: "urxvt";
+  run-shell-command: "{terminal} --window -- bash";
+  drun-icon-theme: "Papirus-Dark";
+  combi-modi: "window,drun,run";
+  hide-scrollbar: true;
+  window-format: "{c}    {t}";
+  theme: "ayu-mirage.rasi";
+  combi-hide-mode-prefix: true;
+  display-window: "Windows";
+  display-windowcd: "Windows";
+  display-run: "Commands";
+  display-ssh: "SSH";
+  display-drun: "Applications";
+  display-combi: "All";
+  display-keys: "Keys";
 }
 
-* {
-background-color:      #1b1d1e00;
-text-color:            #ffffff;
-font:                  "Product Sans Bold 12";
-}
-
-#window {
-anchor:     north;
-location:   north;
-width:      100%;
-padding:    4px 8px 0 18px;
-children:   [ horibox ];
-}
-
-#horibox {
-orientation: horizontal;
-children:   [ prompt, entry, listview ];
-}
-
-#listview {
-layout:     horizontal;
-spacing:    4px;
-lines:      100;
-}
-
-#entry {
-padding:    0px 4px;
-expand:     false;
-width:      10em;
-font:       "Product Sans Bold 14";
-}
-
-#element {
-padding: 0px 2px;
-}
-
-#element selected {
-background-color: #f8f8f800;
-color: #ffffff;
-}
