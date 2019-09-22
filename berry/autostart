@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Update wallpaper and colors
+wal -R
+
+#start input manager
+sxhkd -c ~/.config/berry/sxhkdrc &
+
+#start bar
+sh ~/.config/berry/startpolybar
+
+# set berry color
+sh ~/.cache/wal/berrycolor
+
+# Set decoration geometry
+berryc border_width         6
+berryc inner_border_width   2
+berryc top_gap              0
+berryc title_height         0
+
+# Other options
+berryc smart_place "true"
+berryc draw_text   "false"
+berryc edge_lock   "true"
+berryc set_font    "Iosevka"
+
+# Wifi-tray
+nm-applet &

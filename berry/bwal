@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ "$2" != "-l" ]
+    then
+        wal -i $1
+    else
+        wal -l -i $1
+fi
+sh ~/.cache/wal/berrycolor

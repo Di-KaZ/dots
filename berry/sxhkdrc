@@ -1,0 +1,72 @@
+#
+# wm independent hotkeys
+#
+
+# terminal emulator
+super + Return
+	kitty
+
+# brightness dec
+XF86MonBrightnessDown
+    xbacklight -dec 10
+
+# brightness up
+XF86MonBrightnessUp
+    xbacklight -inc 10
+
+# program launcher
+super + d
+	rofi -show drun
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+#
+# berry hotkeys
+#
+
+super + {Left, Down, Up, Right}
+    berryc window_move {-50 0, 0 50, 0 -50, 50 0}
+
+super + shift +  {Left, Down, Up, Right}
+    berryc window_resize {-50 0, 0 50, 0 -50, 50 0}
+
+super + ctrl + {Left, Down, Up, Right}
+    berryc window_move {-20 0, 0 20, 0 -20, 20 0}
+
+super + shift +  ctrl + {Left, Down, Up, Right}
+    berryc window_resize {-20 0, 0 20, 0 -20, 20 0}
+
+super + {ampersand,eacute,quotedbl,apostrophe,parenleft,section,egrave,exclam,ccedilla}
+    berryc switch_workspace {1-9}
+
+super + shift + {ampersand,eacute,quotedbl,apostrophe,parenleft,section,egrave,exclam,ccedilla}
+    berryc send_to_workspace {0-9}
+
+super + m
+    berryc window_monocle
+
+super + f
+    berryc fullscreen
+
+super + p
+    berryc snap_right
+
+super + o 
+    berryc snap_left
+
+super + n
+    berryc toggle_decorations
+
+super + Tab
+    berryc cycle_focus
+
+super + shift + q
+    berryc window_close
+
+super + c
+    berryc window_center
+
+~button1
+    berryc pointer_focus
