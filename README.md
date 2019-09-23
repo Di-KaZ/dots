@@ -9,6 +9,8 @@ Screenshot
 ![](https://github.com/Di-KaZ/Dotfiles/blob/master/screenshot/numberone.png?raw=true)
 ![](https://github.com/Di-KaZ/Dotfiles/blob/master/screenshot/numbertwo.png?raw=true)
 ![](https://github.com/Di-KaZ/Dotfiles/blob/master/screenshot/numberthree.png?raw=true)
+here is a light one :D
+![](https://github.com/Di-KaZ/Dotfiles/blob/master/screenshot/lightvariant.png?raw=true)
 
 Programs Used
 ============
