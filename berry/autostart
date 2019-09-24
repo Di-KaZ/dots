@@ -13,16 +13,16 @@ sh ~/.config/berry/startpolybar
 sh ~/.cache/wal/berrycolor
 
 # Set decoration geometry
-berryc border_width         6
-berryc inner_border_width   2
-berryc top_gap              0
-berryc title_height         0
+berryc border_width         2
+berryc inner_border_width   3
+berryc top_gap              78
+berryc title_height         15
 
 # Other options
 berryc smart_place "true"
-berryc draw_text   "false"
+berryc draw_text   "true"
 berryc edge_lock   "true"
-berryc set_font    "Iosevka"
+berryc set_font    "Cascadia Code"
 
 # Wifi-tray
 nm-applet &
