@@ -1,21 +1,109 @@
 configuration {
-  modi: "combi,window,drun,run";
-  lines: 6;
-  show-icons: true;
-  terminal: "urxvt";
-  run-shell-command: "{terminal} --window -- bash";
-  drun-icon-theme: "Papirus-Dark";
-  combi-modi: "window,drun,run";
-  hide-scrollbar: true;
-  window-format: "{c}    {t}";
-  theme: "ayu-mirage.rasi";
-  combi-hide-mode-prefix: true;
-  display-window: "Windows";
-  display-windowcd: "Windows";
-  display-run: "Commands";
-  display-ssh: "SSH";
-  display-drun: "Applications";
-  display-combi: "All";
-  display-keys: "Keys";
+	display-combi:     "Execute";
+	display-drun: "Applications";
+	show-icons:      true;
+	icon-theme: "Newaita";
+	sidebar-mode:    true;
+	theme: "~/.cache/wal/colors-rofi-dark.rasi";
 }
 
+* {
+	background-color:            #dbd8ba;
+	text-color:                  #0a112a;
+	selbg:                       #506783;
+	urgbg:                       #e53935;
+	winbg:			     		 #a87b42;
+
+	selected-normal-foreground:  @winbg;
+	normal-foreground:           @text-color;
+	normal-background:           @background-color;
+
+	selected-urgent-foreground:  @background-color;
+	urgent-foreground:           @text-color;
+	selected-urgent-background:  @urgbg;
+	urgent-background:           @background-color;
+
+	selected-active-foreground:  @winbg;
+	active-foreground:           @text-color;
+	active-background:           @selbg;
+}
+
+window {
+	border: 3;
+	border-color: #b5b49c;
+	location:	 west;
+	anchor:		 south west;
+	height:		 50%;
+	width:		 13%;
+	y-offset: 50;
+	orientation: horizontal;
+}
+
+mainbox {
+	spacing:  0.1em;
+	children: [ entry,listview,mode-switcher ];
+}
+
+button { padding: 5px 2px;}
+
+button selected {
+	background-color: @active-background;
+	text-color:       @background-color;
+}
+
+
+element { padding: 4; }
+
+entry {
+	expand:         false;
+	text-color:     @normal-foreground;
+	vertical-align: 1;
+	padding:        10px;
+}
+
+element normal.normal {
+	background-color: @normal-background;
+	text-color:       @normal-foreground;
+}
+
+element normal.urgent {
+	background-color: @urgent-background;
+	text-color:       @urgent-foreground;
+}
+
+element normal.active {
+	background-color: @active-background;
+	text-color:       @active-foreground;
+}
+
+element selected.normal {
+	background-color: @selected-normal-background;
+	text-color:       @selected-normal-foreground;
+	border:           0 5px solid 0 0;
+	border-color:	    @active-background;
+}
+
+element selected.urgent {
+	background-color: @selected-urgent-background;
+	text-color:       @selected-urgent-foreground;
+}
+
+element selected.active {
+	background-color: @selected-active-background;
+	text-color:       @selected-active-foreground;
+}
+
+element alternate.normal {
+	background-color: @normal-background;
+	text-color:       @normal-foreground;
+}
+
+element alternate.urgent {
+	background-color: @urgent-background;
+	text-color:       @urgent-foreground;
+}
+
+element alternate.active {
+	background-color: @active-background;
+	text-color:       @active-foreground;
+}

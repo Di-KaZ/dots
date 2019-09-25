@@ -1,0 +1,318 @@
+;COLOR
+
+[colors]
+trans = #90b5b49c
+border = #b5b49c
+;xcolor0 = ${xrdb:color0}
+;xcolor1 = ${xrdb:color1}
+;xcolor2 = ${xrdb:color2}
+;xcolor3 = ${xrdb:color3}
+;xcolor4 = ${xrdb:color4}
+;xcolor5 = ${xrdb:color5}
+xcolor6 = ${xrdb:color6} #a87b42
+xcolor7 = ${xrdb:color7} #5e5d4a
+xcolor8 = ${xrdb:color8} #213b59
+
+background = ${xrdb:background} #dbd8ba
+;foreground = ${xrdb:foreground}
+
+;GLOBAL
+[global/wm]
+;margin-top = 0
+;margin-bottom = 0
+
+[bar/rome]
+monitor = 
+bottom = false
+width = 100%
+height = 24
+offset-x = 0%
+offset-y = 0%
+fixed-center = false
+background = ${colors.trans}
+foreground = ${colors.trans}
+
+;border-size= 3
+;border-color= ${colors.border}
+border-top-size = 3
+border-top-color= ${colors.border}
+border-left-size = 3
+border-left-color= ${colors.border}
+border-right-size = 3
+border-right-color= ${colors.border}
+
+;spacing = 0
+;padding-left = 0
+;padding-right = 0
+;module-margin-left = 0
+;module-margin-right = 0
+
+;FONTS
+font-0 = Iosevka Nerd Font:size=12;2
+font-1 = Iosevka Nerd Font:size=16;2
+font-2 = Iosevka Nerd Font:size=18;4
+
+;LAYOUT
+
+modules-left = powermenu arrow arrow1
+modules-right = arrow2 music  arrow pulseaudio backlight battery arrow wlan pkg arrow date openweathermap-simple
+
+;TEXT MODULE
+
+[module/arrow1]
+type = custom/text
+content = 
+content-foreground = ${colors.background}
+content-background = ${colors.trans}
+content-font = 3
+
+[module/arrow]
+type = custom/text
+content = |
+content-foreground = ${colors.xcolor7}
+content-background = ${colors.background}
+content-font = 2
+
+[module/arrow2]
+type = custom/text
+content = 
+content-foreground = ${colors.background}
+content-background = ${colors.trans}
+content-font = 3
+
+;BSPWM
+[module/bspwm]
+
+type = internal/bspwm
+pin-workspaces = true
+enable-click = true
+enable-scroll = true
+reverse-scroll = false
+
+label-focused = %icon% 
+label-focused-foreground = ${colors.xcolor6}
+label-focused-background = ${colors.background}
+label-focused-padding = 1
+
+label-occupied = %icon% 
+label-occupied-foreground = ${colors.xcolor8}
+label-occupied-background = ${colors.background}
+label-occupied-padding = 1
+
+label-empty = %icon% 
+label-empty-foreground = ${colors.xcolor7}
+label-empty-background = ${colors.background}
+label-empty-padding = 1
+
+ws-icon-[0-9]+ = label;icon
+ws-icon-0 = web;爵
+ws-icon-1 = write;
+ws-icon-2 = mail;
+ws-icon-3 = film;
+ws-icon-4 = play;
+ws-icon-5 = music;ﱘ
+
+;POWERMENU
+
+[module/powermenu]
+type = custom/menu
+
+label-open = 
+label-open-foreground = ${colors.xcolor8}
+label-open-background = ${colors.background}
+label-open-padding = 1
+label-close = 
+label-close-foreground = ${colors.xcolor8}
+label-close-background = ${colors.background}
+label-close-padding = 1
+
+; logout
+menu-0-0 = 
+menu-0-0-exec = bspc quit
+menu-0-0-foreground = ${colors.xcolor8}
+menu-0-0-background = ${colors.background}
+menu-0-0-padding = 1
+; reboot
+menu-0-1 = ﰇ
+menu-0-1-exec = systemctl reboot
+menu-0-1-foreground = ${colors.xcolor8}
+menu-0-1-background = ${colors.background}
+menu-0-1-padding = 1
+; shutdown
+menu-0-2 = 襤
+menu-0-2-exec = systemctl poweroff
+menu-0-2-foreground = ${colors.xcolor8}
+menu-0-2-background = ${colors.background}
+menu-0-2-padding = 1
+
+;SPOTIFY
+
+[module/music]
+type = custom/script
+exec = $HOME/.config/polybar/mediaplayer.py
+exec-if = pgrep -x spotify
+interval = 5
+label = " %output:0:30:% "
+label-padding = 1
+format-foreground = ${colors.xcolor8}
+format-background = ${colors.background}
+
+;DATE AND TIME
+
+[module/date]
+type = internal/date
+interval = 1
+
+format-foreground = ${colors.xcolor8}
+format-background = ${colors.background}
+
+date = " %a,%d.%b"
+time-alt = " %H:%M"
+label = "%date%%time% "
+label-padding = 1
+
+;AUDIO
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+interval = 10
+
+format-volume = <ramp-volume> <label-volume>
+format-volume-padding = 1
+format-volume-foreground = ${colors.xcolor8}
+format-volume-background = ${colors.background}
+
+label-volume = %percentage%
+label-muted =  00
+label-muted-padding = 1
+label-muted-foreground = ${colors.xcolor8}
+label-muted-background = ${colors.background}
+
+ramp-volume-0 = ""
+ramp-volume-1 = ""
+ramp-volume-2 = ""
+ramp-volume-3 = ""
+ramp-volume-font = 1
+
+;BACKLIGHT
+
+[module/backlight]
+type = internal/xbacklight
+
+format = <ramp> <label>
+format-padding = 1
+format-foreground = ${colors.xcolor8}
+format-background = ${colors.background}
+label = %percentage%
+
+ramp-0 = ""
+ramp-1 = ""
+ramp-2 = ""
+ramp-3 = ""
+ramp-4 = ""
+ramp-font = 1
+
+;BATTERY
+
+[module/battery]
+type = internal/battery
+battery = BAT1
+adapter = ADP1
+full-at = 95
+time-format = %H:%M
+
+format-charging = <animation-charging> <label-charging>
+format-charging-foreground = ${colors.xcolor8}
+format-charging-background = ${colors.background}
+format-charging-padding = 1
+
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-foreground = ${colors.xcolor8}
+format-discharging-background = ${colors.background}
+format-discharging-padding = 1
+
+format-full = <label-full>
+format-full-foreground = ${colors.xcolor8}
+format-full-background = ${colors.background}
+format-full-padding = 1
+
+label-charging = %percentage% %time%
+label-discharging = %percentage% %time%
+label-full =  %percentage%
+
+ramp-capacity-0 = 
+ramp-capacity-0-font = 1
+ramp-capacity-0-foreground = ${colors.xcolor6}
+ramp-capacity-1 = 
+ramp-capacity-1-font = 1
+ramp-capacity-1-foreground = ${colors.xcolor6}
+ramp-capacity-2-font = 1
+ramp-capacity-2 = 
+ramp-capacity-3-font = 1
+ramp-capacity-3 = 
+ramp-capacity-4-font = 1
+ramp-capacity-4 = 
+animation-charging-0 = 
+animation-charging-framerate = 750
+
+;WIRELESS
+
+[module/wlan]
+type = internal/network
+interface = wlp2s0
+interval = 3
+
+format-connected = <label-connected>
+format-connected-foreground = ${colors.xcolor8}
+format-connected-background = ${colors.background}
+format-connected-padding = 1
+
+format-disconnected = <label-disconnected>
+format-disconnected-foreground = ${colors.xcolor6}
+format-disconnected-background = ${colors.background}
+format-disconnected-padding = 1
+
+label-connected = %{A1:networkmanager_dmenu:}直%{A}
+label-disconnected = %{A1:networkmanager_dmenu:}睊%{A}
+
+;MPD
+
+[module/mpd]
+type = internal/mpd
+
+format-online = "<label-song> <icon-stop> <icon-play> "
+format-online-foreground = ${colors.xcolor8}
+format-online-background = ${colors.background}
+format-online-padding = 0
+
+label-song-maxlen = 25
+label-song-ellipsis = true
+
+icon-prev = ﭣ
+icon-stop = ﭦ
+icon-play = 奈
+icon-pause = 
+icon-next = ﭡ
+icon-random = 
+icon-repeat = 
+
+;WEATHER
+
+[module/openweathermap-simple]
+type = custom/script
+exec = $HOME/.config/polybar/openweathermap-simple.sh
+interval = 1200
+
+format-foreground = ${colors.xcolor8}
+format-background = ${colors.background}
+
+;UPDATE
+
+[module/pkg]
+type = custom/script
+exec = ~/.config/polybar/updates.sh
+format-padding = 1
+tail = true
+format-foreground = ${colors.xcolor8}
+format-background = ${colors.background}
