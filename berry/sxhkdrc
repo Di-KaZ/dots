@@ -14,6 +14,18 @@ XF86MonBrightnessDown
 XF86MonBrightnessUp
     xbacklight -inc 5
 
+# volume down
+XF86AudioLowerVolume
+    pactl set-sink-volume @DEFAULT_SINK@ -5%
+
+# volume up
+XF86AudioRaiseVolume
+    pactl set-sink-volume @DEFAULT_SINK@ +5%
+
+# volume mute
+XF86AudioMute
+	pactl set-sink-mute @DEFAULT_SINK@ toggle
+
 # program launcher
 super + d
 	rofi -show drun
@@ -38,6 +50,7 @@ super + ctrl + {Left, Down, Up, Right}
 super + shift +  ctrl + {Left, Down, Up, Right}
     berryc window_resize {-20 0, 0 20, 0 -20, 20 0}
 
+# Yes I'm a baguette :^)
 super + {ampersand,eacute,quotedbl,apostrophe,parenleft,section,egrave,exclam,ccedilla}
     berryc switch_workspace {1-9}
 
@@ -48,7 +61,7 @@ super + m
     berryc window_monocle
 
 super + f
-    berryc fullscreen
+    berryc toggle_decorations && berryc fullscreen
 
 super + p
     berryc snap_right

@@ -29,13 +29,13 @@ configuration {
 }
 
 window {
-	border: 3;
 	border-color: #b5b49c;
 	location:	 west;
 	anchor:		 south west;
 	height:		 50%;
-	width:		 13%;
-	y-offset: 50;
+	width:		 20%;
+	y-offset: 20;
+	x-offset: 0;
 	orientation: horizontal;
 }
 
