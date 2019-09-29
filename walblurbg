@@ -1,0 +1,49 @@
+#!/bin/bash
+
+#
+# To make it work you will need :
+# - Use pywal
+# - wmctrl
+# - imagemagick
+# - feh
+#
+
+prev_num_windows=0
+prev_blurwallpath=""
+
+# Create directory for saving blured background if not existing
+mkdir -p ~/.cache/blured_wal
+
+while :; do
+    . ~/.cache/wal/colors.sh # used to get path of current wallpaper
+    blur_wallpaper_path="/home/moussa/.cache/blured_wal/$(basename "$wallpaper")" # Path for the blured version
+    # check if a cached wallpaper with the same name already exist, if not creating it
+    if [ ! -f "$blur_wallpaper_path" ]
+        then
+            echo "Generating and caching blured wallpaper '$(basename "$wallpaper")'..."
+            convert -scale 10% -blur 0x2 -resize 1000% "$wallpaper" "$blur_wallpaper_path"
+            echo "Done !"
+            prev_blurwallpath="$blur_wallpaper_path"
+        else
+            prev_blurwallpath="$blur_wallpaper_path"
+    fi
+    # "To Blur Or Not To Blur"
+    current_workspace="$(xprop -root _NET_CURRENT_DESKTOP | awk '{print $3}')" # get current workspace name
+    open_windows_on_workspace="$(echo "$(wmctrl -l)" | awk -F" " '{print $2}' | grep $current_workspace)" # get windows opened on this workspace
+    if [ -n "$open_windows_on_workspace" ] # if there is a window
+        then
+            if [ "$prev_num_windows" != "$blur_wallpaper_path" ] # prevent setting the wallpaper every 0.3 second
+                then
+                    feh --bg-fill "$blur_wallpaper_path" # blur the damn wallpaper
+            fi
+            prev_num_windows="$blur_wallpaper_path"
+            sleep 0.3
+        else
+            if [ "$prev_num_windows" != "$wallpaper" ]
+                then
+                    feh --bg-fill "$wallpaper" # no window ! removing blur
+            fi
+            prev_num_windows="$wallpaper"
+            sleep 0.3
+    fi
+done
