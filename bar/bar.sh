@@ -20,7 +20,6 @@ fnc_batteries() {
         else
             CHARG='-'
     fi
-
     printf "%s%s%%" "$CHARG" "$BATLVL"
 }
 
@@ -35,12 +34,17 @@ fnc_sound() {
     echo $SOUND
 }
 
+declare -A SPACE
+SPACE=(["1"]="One" ["2"]="Two" ["3"]="Three" ["4"]="Four" ["5"]="Five" ["6"]="Six" ["7"]="Seven" ["8"]="Height" ["9"]="Nine") ;
+
 fnc_workspace() {
     WRK=$(xprop -root _NET_CURRENT_DESKTOP | awk '{print $3}')
 
     # I don't like having a workspace named '0'
     WRK=$(($WRK + 1))
-    echo $WRK
+    TRUE_WRK="%{B$color1}  ${SPACE["$WRK"]}  %{B-}"
+
+    echo $TRUE_WRK
 }
 
 fnc_date() {
@@ -56,35 +60,35 @@ fnc_time() {
 fnc_launcher() {
     if [ -z "$(pgrep rofi)" ]
         then
-            echo -n "%{A:rofi -show drun:}%{F$color5}Launch%{F-}%{A}"
+            echo -n "%{A:rofi -show drun:}%{B$color3}  Launch  %{B-}%{A}"
         else
-            echo -n "%{A:rofi -show drun:}%{F$color2}close%{F-}%{A}"
+            echo -n "%{A:rofi -show drun:}%{B$color2}  close  %{B-}%{A}"
     fi
 }
 
 fnc_bwal() {
-    echo -n "%{A:bwal:}%{F$color2}Theme%{F-}%{A}"
+    echo -n "%{A:/home/moussa/Dotfiles/berry/bwal:}%{B$color2}  THEME  %{B-}%{A}"
 }
 
 while :; do
     # Left
     BAR="%{l}"
-    BAR="${BAR}%{O10}$(fnc_launcher)"
+    BAR="${BAR}$(fnc_workspace)"
+    BAR="${BAR}$(fnc_launcher)"
 
     # Center
-    BAR="${BAR}%{c}"
-    BAR="${BAR}[%{F$color3}$(fnc_workspace)%{F-}]"
-    BAR="${BAR} %{F$color4}DATE:%{F-} $(fnc_date)"
+    BAR="${BAR}%{c}%{U$color4}%{+u}.."
+    BAR="${BAR}%{F$color4}DATE:%{F-} $(fnc_date)"
     BAR="${BAR} %{F$color5}TIME:%{F-} $(fnc_time)"
     BAR="${BAR} %{F$color6}VOL:%{F-} $(fnc_sound)"
     BAR="${BAR} %{F$color2}BAT:%{F-} $(fnc_batteries)"
-
+    BAR="${BAR}..%{-u}%{U-}"
     # Right
     BAR="${BAR}%{r}"
-    BAR="${BAR}$(fnc_bwal)%{O10}"
-    BAR="${BAR}%{A:shutdown 0:}%{F$color5}Shutdown%{F-}%{O10}%{A}"
+    BAR="${BAR}%{A:shutdown 0:}%{B$color4}  Shutdown  %{B-}%{A}"
+    BAR="${BAR}$(fnc_bwal)"
     
     # Output result
-    echo $BAR
+    echo -e "$BAR"
     sleep 0.2
 done

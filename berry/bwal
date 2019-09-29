@@ -10,9 +10,12 @@ if [ "$1" != "-l" ]
         wal -l -i $WALLPATH -q
 fi
 
+# kill previous instance
 kill "$(pgrep -f walblurbg)"
 while pgrep -f walblurbg >/dev/null; do sleep 1; done
 
-sh ~/Dotfiles/walblurbg &
-sh ~/Dotfiles/bar/launchbar.sh
 sh ~/.cache/wal/berrycolor
+sh ~/Dotfiles/berry/startdunst
+sh ~/Dotfiles/bar/launchbar.sh &
+sh ~/Dotfiles/walblurbg &
+notify-send -i "$WALLPATH" "Updated theme !"

@@ -20,7 +20,7 @@ blur_wallpaper_path="/home/moussa/.cache/blured_wal/$(basename "$wallpaper")" # 
 # check if a cached wallpaper with the same name already exist, if not creating it
 if [ ! -f "$blur_wallpaper_path" ]
     then
-        echo "Generating and caching blured wallpaper '$(basename "$wallpaper")'..."
+        notify-send "Generating and caching blured wallpaper '$(basename "$wallpaper")'..."
         convert -scale 10% -blur 0x2 -resize 1000% "$wallpaper" "$blur_wallpaper_path"
         echo "Done !"
         prev_blurwallpath="$blur_wallpaper_path"

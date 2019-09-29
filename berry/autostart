@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Update wallpaper and colors
-bwal
+sh ~/Dotfiles/berry/bwal
 
 # blur wal script
 sh ~/Dotfiles/blur_bg.sh &
@@ -14,6 +14,9 @@ sh ~/.config/bar/launchbar.sh
 
 # set berry color
 sh ~/.cache/wal/berrycolor
+
+# launch notification
+sh ~/Dotfiles/berry/startdunst
 
 # Set decoration geometry
 berryc border_width         7
@@ -33,5 +36,5 @@ nm-applet &
 # Filter
 redshift &
 
-# Compton (just prevent clipping when updating berry appearance)
+# Compton (just prevent clipping when updating berry appearance and bar)
 compton &

@@ -2,6 +2,8 @@
 # wm independent hotkeys
 #
 
+Print
+    cd /home/moussa/Pictures/screenshots/ && scrot '%Y-%m-%d_$wx$h.png' && notify-send "screenshot taken !"
 # terminal emulator
 super + Return
 	kitty
