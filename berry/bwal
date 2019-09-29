@@ -1,24 +1,7 @@
 #!/bin/bash
 
 WALL="$(ls ~/Dotfiles/wallpaper | shuf -n 1)"
-
-WALLTMPBLUR="/home/moussa/Dotfiles/.wall_tmp_blur.png"
-WALLTMP="/home/moussa/Dotfiles/.wall_tmp.png"
 WALLPATH="/home/moussa/Dotfiles/wallpaper/$WALL"
-BLURWALLPATH="/home/moussa/.cache/blured_wal/$WALL"
-
-if [ ! -f "$BLURWALLPATH" ]
-    then
-        echo "Generating and caching blured wallpaper..."
-        convert -scale 10% -blur 0x2 -resize 1000% "$WALLPATH" "$BLURWALLPATH"
-        # convert "$WALLPATH" -blur 10x10 "$BLURWALLPATH"
-        cp "$BLURWALLPATH" "$WALLTMPBLUR"
-    else
-        echo "Cache already exist using it..."
-        cp "$BLURWALLPATH" "$WALLTMPBLUR"
-fi
-
-cp "$WALLPATH" "$WALLTMP"
 
 if [ "$1" != "-l" ]
     then

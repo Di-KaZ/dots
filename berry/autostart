@@ -18,7 +18,7 @@ sh ~/.cache/wal/berrycolor
 # Set decoration geometry
 berryc border_width         7
 berryc inner_border_width   0
-berryc top_gap              15
+berryc top_gap              20
 berryc title_height         20
 
 # Other options
