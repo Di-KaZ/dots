@@ -37,13 +37,12 @@ while :; do
                     feh --bg-fill "$blur_wallpaper_path" # blur the damn wallpaper
             fi
             prev_num_windows="$blur_wallpaper_path"
-            sleep 0.3
         else
             if [ "$prev_num_windows" != "$wallpaper" ]
                 then
                     feh --bg-fill "$wallpaper" # no window ! removing blur
             fi
             prev_num_windows="$wallpaper"
-            sleep 0.3
     fi
+    sleep 0.3
 done

@@ -5,9 +5,9 @@ WALLPATH="/home/moussa/Dotfiles/wallpaper/$WALL"
 
 if [ "$1" != "-l" ]
     then
-        wal -i $WALLPATH
+        wal -i $WALLPATH -q
     else
-        wal -l -i $WALLPATH
+        wal -l -i $WALLPATH -q
 fi
 
 sh ~/Dotfiles/bar/launchbar.sh
