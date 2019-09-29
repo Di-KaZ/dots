@@ -9,7 +9,6 @@ Screenshot
 ![](https://github.com/Di-KaZ/Dotfiles/blob/master/screenshot/n1.png?raw=true)
 ![](https://github.com/Di-KaZ/Dotfiles/blob/master/screenshot/n2.png?raw=true)
 ![](https://github.com/Di-KaZ/Dotfiles/blob/master/screenshot/n3.png?raw=true)
-![](https://github.com/Di-KaZ/Dotfiles/blob/master/screenshot/n3.png?raw=true)
 ![](https://github.com/Di-KaZ/Dotfiles/blob/master/screenshot/n4.png?raw=true)
 
 Programs Used
