@@ -1,7 +1,10 @@
 #!/bin/bash
 
 # Update wallpaper and colors
-wal -R
+bwal
+
+# blur wal script
+sh ~/Dotfiles/blur_bg.sh &
 
 #start input manager
 sxhkd -c ~/.config/berry/sxhkdrc &
@@ -14,7 +17,7 @@ sh ~/.cache/wal/berrycolor
 
 # Set decoration geometry
 berryc border_width         7
-berryc inner_border_width   5
+berryc inner_border_width   0
 berryc top_gap              15
 berryc title_height         20
 

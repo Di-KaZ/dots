@@ -73,6 +73,7 @@ while :; do
     # Left
     BAR="%{l}"
     BAR="${BAR}%{O10}$(fnc_launcher)"
+
     # Center
     BAR="${BAR}%{c}"
     BAR="${BAR}[%{F$COLOR3}$(fnc_workspace)%{F-}]"
@@ -80,9 +81,11 @@ while :; do
     BAR="${BAR} %{F$COLOR5}TIME:%{F-} $(fnc_time)"
     BAR="${BAR} %{F$COLOR6}VOL:%{F-} $(fnc_sound)"
     BAR="${BAR} %{F$COLOR2}BAT:%{F-} $(fnc_batteries)"
+
     # Right
     BAR="${BAR}%{r}"
     BAR="${BAR}%{A:shutdown 0:} %{F$COLOR5}Shutdown%{O10}%{A}%{F-}"
+    
     # Output result
     echo $BAR
     sleep 0.2
