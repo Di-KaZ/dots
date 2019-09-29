@@ -56,10 +56,14 @@ fnc_time() {
 fnc_launcher() {
     if [ -z "$(pgrep rofi)" ]
         then
-            echo -n "%{A:rofi -show drun:}%{F$color5}  Launch%{A}%{F-}"
+            echo -n "%{A:rofi -show drun:}%{F$color5}Launch%{F-}%{A}"
         else
-            echo -n "%{A:rofi -show drun:}%{F$color2}  close %{A}%{F-}"
+            echo -n "%{A:rofi -show drun:}%{F$color2}close%{F-}%{A}"
     fi
+}
+
+fnc_bwal() {
+    echo -n "%{A:bwal:}%{F$color2}Theme%{F-}%{A}"
 }
 
 while :; do
@@ -77,7 +81,8 @@ while :; do
 
     # Right
     BAR="${BAR}%{r}"
-    BAR="${BAR}%{A:shutdown 0:} %{F$color5}Shutdown%{O10}%{A}%{F-}"
+    BAR="${BAR}$(fnc_bwal)%{O10}"
+    BAR="${BAR}%{A:shutdown 0:}%{F$color5}Shutdown%{F-}%{O10}%{A}"
     
     # Output result
     echo $BAR

@@ -10,8 +10,8 @@ if [ "$1" != "-l" ]
         wal -l -i $WALLPATH -q
 fi
 
-killall -q walblurbg # killing previous instance of walblurbg
-while pgrep -u $UID -x walblurbg >/dev/null; do sleep 1; done
+kill "$(pgrep -f walblurbg)"
+while pgrep -f walblurbg >/dev/null; do sleep 1; done
 
 sh ~/Dotfiles/walblurbg &
 sh ~/Dotfiles/bar/launchbar.sh
