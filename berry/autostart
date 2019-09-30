@@ -19,7 +19,7 @@ sh ~/.cache/wal/berrycolor
 sh ~/Dotfiles/berry/startdunst
 
 # Set decoration geometry
-berryc border_width         7
+berryc border_width         5
 berryc inner_border_width   0
 berryc top_gap              20
 berryc title_height         20
@@ -35,6 +35,9 @@ nm-applet &
 
 # Filter
 redshift &
+
+# Music !
+mpd &
 
 # Compton (just prevent clipping when updating berry appearance and bar)
 compton &

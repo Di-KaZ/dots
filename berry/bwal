@@ -11,11 +11,16 @@ if [ "$1" != "-l" ]
 fi
 
 # kill previous instance
-kill "$(pgrep -f walblurbg)"
-while pgrep -f walblurbg >/dev/null; do sleep 1; done
+to_kill="$(pgrep -f walblurbg)"
+if [ ! -z "$to_kill" ]
+    then
+        kill $to_kill
+    else
+        echo "No walblur bg instance detected"
+fi
 
 sh ~/.cache/wal/berrycolor
 sh ~/Dotfiles/berry/startdunst
-sh ~/Dotfiles/bar/launchbar.sh &
+sh ~/Dotfiles/bar/launchbar.sh
 sh ~/Dotfiles/walblurbg &
 notify-send -i "$WALLPATH" "Updated theme !"

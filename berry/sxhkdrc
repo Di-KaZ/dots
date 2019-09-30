@@ -54,7 +54,7 @@ super + shift +  ctrl + {Left, Down, Up, Right}
 
 # Yes I'm a baguette :^)
 super + {ampersand,eacute,quotedbl,apostrophe,parenleft,section,egrave,exclam,ccedilla}
-    berryc switch_workspace {1-9}
+    berryc switch_workspace {0-9}
 
 super + shift + {ampersand,eacute,quotedbl,apostrophe,parenleft,section,egrave,exclam,ccedilla}
     berryc send_to_workspace {0-9}
