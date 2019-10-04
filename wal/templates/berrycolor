@@ -6,4 +6,4 @@ berryc unfocus_color        {background.strip}
 berryc inner_focus_color    {color3.strip}
 berryc inner_unfocus_color  {color2.strip}
 berryc text_focus_color     {background.strip}
-berryc text_unfocus_color   {color4.strip}
+berryc text_unfocus_color   {foreground.strip}

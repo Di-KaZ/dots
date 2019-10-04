@@ -1,34 +1,31 @@
 #!/bin/bash
 
 # Update wallpaper and colors
-sh ~/Dotfiles/berry/bwal
-
-# blur wal script
-sh ~/Dotfiles/blur_bg.sh &
+sh $HOME/Dotfiles/scripts/theme_changer.sh
 
 #start input manager
-sxhkd -c ~/.config/berry/sxhkdrc &
+sxhkd -c $HOME/.config/sxhkd/sxhkdrc &
 
 #start bar
-sh ~/.config/bar/launchbar.sh
+sh $HOME/.config/bar/launchbar.sh
 
 # set berry color
-sh ~/.cache/wal/berrycolor
+sh $HOME/.cache/wal/berrycolor
 
 # launch notification
-sh ~/Dotfiles/berry/startdunst
+sh $HOME/Scripts/startdunst &
 
 # Set decoration geometry
-berryc border_width         5
+berryc border_width         7
 berryc inner_border_width   0
-berryc top_gap              20
-berryc title_height         20
+berryc top_gap              0
+berryc title_height         25
 
 # Other options
 berryc smart_place "true"
 berryc draw_text   "false"
 berryc edge_lock   "true"
-berryc set_font    "Ticketing"
+berryc set_font    "Cascadia Code"
 
 # Wifi-tray
 nm-applet &
@@ -39,5 +36,5 @@ redshift &
 # Music !
 mpd &
 
-# Compton (just prevent clipping when updating berry appearance and bar)
-compton &
+# lighter than compton for sure
+xcompmgr -c -r 10 -o .4 -t -5 -l -5 -C &
