@@ -14,7 +14,7 @@ fnc_workspace() {
         then
             TRUE_WRK="%{A:rofi -show drun:}%{B$color1}  WOKRSPACE  %{B-}%{B$foreground}%{F$background}  ${SPACE["$WRK"]}  %{F-}%{B-}%{A}"
         else
-            TRUE_WRK="%{B$color1}%{O156}Rofi Menu%{O156}%{B-}"
+            TRUE_WRK="%{B$color1}%{O161}Rofi Menu%{O161}%{B-}"
     fi
 
     echo $TRUE_WRK
