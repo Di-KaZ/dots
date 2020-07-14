@@ -8,12 +8,6 @@ configuration {
 }
 
 * {
-	background-color:            #dbd8ba;
-	text-color:                  #0a112a;
-	selbg:                       #506783;
-	urgbg:                       #e53935;
-	winbg:			     		 #a87b42;
-
 	selected-normal-foreground:  @winbg;
 	normal-foreground:           @text-color;
 	normal-background:           @background-color;
@@ -35,7 +29,7 @@ window {
 	height:		 50%;
 	width:		 20%;
 	y-offset: 20;
-	x-offset: 0;
+	x-offset: 20;
 	orientation: horizontal;
 }
 

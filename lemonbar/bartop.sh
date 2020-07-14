@@ -12,9 +12,9 @@ fnc_workspace() {
     WRK=$(($WRK + 1))
     if [ -z "$(pgrep rofi)" ]
         then
-            TRUE_WRK="%{A:rofi -show drun:}%{B$color1}  WOKRSPACE  %{B-}%{B$foreground}%{F$background}  ${SPACE["$WRK"]}  %{F-}%{B-}%{A}"
+            TRUE_WRK="%{A:rofi -show drun:}%{B$color1}  WOKRSPACE  %{B-}%{B$foreground}%{F$background}  ${SPACE["$WRK"]}  %{F-}%{B-}%{A}%{F$foreground}%{F-}"
         else
-            TRUE_WRK="%{B$color1}%{O161}Rofi Menu%{O161}%{B-}"
+            TRUE_WRK="%{B$color1}%{O161}Rofi Menu%{O161}%{B-}%{F$color1}%{F-}"
     fi
 
     echo $TRUE_WRK

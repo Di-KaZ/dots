@@ -41,20 +41,29 @@ fnc_time() {
 fnc_bwal() {
     echo -n "%{A:$HOME/Scripts/theme_changer.sh -r:}%{A3:$HOME/Scripts/theme_changer.sh -rl:}%{B$color2}  THEME  %{B-}%{A}%{A}"
 }
+fnc_sep() {
+    echo -n "%{B$1}%{F$foreground}%{F-}"
+
+}
+
+
+fnc_sep_tag() {
+    echo -n "%{F$1}%{F-}"
+}
 
 while :; do
     # Left
 
-    BAR="%{l}"
-    BAR="${BAR}%{B$color4}%{O5}DATE%{O5}%{B-}%{B$foreground}%{F$background}%{O5}$(fnc_date)%{O5}%{F-}%{B-}%{O50}"
-    BAR="${BAR} %{B$color5}%{O5}TIME%{O5}%{B-}%{B$foreground}%{F$background}%{O5}$(fnc_time)%{O5}%{F-}%{B-}%{O50}"
-    BAR="${BAR} %{B$color6}%{O5}VOLUME%{O5}%{B-}%{B$foreground}%{F$background}%{O5}$(fnc_sound)%{O5}%{F-}%{B-}%{O50}"
-    BAR="${BAR} %{B$color2}%{O5}BATTERY%{O5}%{B-}%{B$foreground}%{F$background}%{O5}$(fnc_batteries)%{O5}%{F-}%{B-}%{O50}"
+    BAR="%{l}%{B$color6}%{O3}%{O4}%{B-}"
+    BAR="${BAR}%{B$color4} %{O15}DATE%{O5}%{B-}%{B$foreground}$(fnc_sep_tag $color4)%{F$background}%{O25}$(fnc_date)%{O25}$(fnc_sep $color5)%{F-}%{B-}"
+    BAR="${BAR}%{B$color5} %{O15}TIME%{O5}%{B-}%{B$foreground}$(fnc_sep_tag $color5)%{F$background}%{O25}$(fnc_time)%{O25}$(fnc_sep $color6)%{F-}%{B-}"
+    BAR="${BAR}%{B$color6} %{O15}VOLUME%{O5}%{B-}%{B$foreground}$(fnc_sep_tag $color6)%{F$background}%{O25}$(fnc_sound)%{O25}$(fnc_sep $color2)%{F-}%{B-}"
+    BAR="${BAR}%{B$color2} %{O15}BATTERY%{O5}%{B-}%{B$foreground}$(fnc_sep_tag $color2)%{F$background}%{O25}$(fnc_batteries)%{O25}$(fnc_sep "#00000000")%{F-}%{B-}"
     # Center
 
-    # Right
-    BAR="${BAR}%{r}"
-    BAR="${BAR}$(fnc_bwal)"
+    # # Right
+    # BAR="${BAR}%{r}"
+    # BAR="${BAR}$(fnc_bwal)"
     
     # Output result
     echo -e "$BAR"

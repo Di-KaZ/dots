@@ -11,11 +11,11 @@ super + Return
 
 # brightness dec
 XF86MonBrightnessDown
-    xbacklight -dec 5
+    brightnessctl s 5%-
 
 # brightness up
 XF86MonBrightnessUp
-    xbacklight -inc 5
+    brightnessctl s 5%+
 
 # volume down
 XF86AudioLowerVolume
