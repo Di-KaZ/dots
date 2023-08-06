@@ -35,11 +35,15 @@
       :valign "center"
       :orientation "h"
       :space-evenly false
-      (literal :class "icon" :valign "center" {EWW_BATTERY.BAT0.status == "Full" ? "󱟢" : EWW_BATTERY.BAT0.status == "Charging" ? "󱟦" : "󱟞"})
+      (literal :class "icon"
+        :valign "center"
+        {EWW_BATTERY.BAT0.status == "Full" ? "󱟢" : EWW_BATTERY.BAT0.status == "Charging" ? "󱟦" : "󱟞"}
+      )
       (literal
         :class "chip"
         :valign "center"
-      {EWW_BATTERY.BAT0.capacity + "%"})
+        {EWW_BATTERY.BAT0.capacity + "%"}
+      )
     )
     (box
       :class "stat"
