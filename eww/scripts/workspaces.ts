@@ -26,7 +26,7 @@ async function get_worspaces() {
    UNIX-CONNECT:/tmp/hypr/${process.env
      .HYPRLAND_INSTANCE_SIGNATURE!}/.socket2.sock -`;
 
-  for await (let _ of stdout) {
+  for await (let _ of stdout as ReadableStream<Buffer>) {
     workspaces = JSON.parse(await $`hyprctl workspaces -j`);
     fill_workspaces(workspaces);
 

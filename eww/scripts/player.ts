@@ -24,7 +24,7 @@ async function get_player_status() {
                 "art": "{{mpris:artUrl}}"\
             }'`;
 
-  for await (let status of stdout) {
+  for await (let status of stdout as ReadableStream<Buffer>) {
     try {
       const player_status: PlayerStatus = JSON.parse(
         Buffer.from(status).toString()
