@@ -1,0 +1,120 @@
+$y: 0.5rem;
+$x: 0.8rem;
+$radius: 10px;
+
+$black: #32323b;
+$gray: #565f89;
+$red: #c34043;
+$green: #98bb6c;
+$yellow: #e6c384;
+$blue: #7e9cd8;
+$magenta: #957fb8;
+$cyan: #7fb4ca;
+
+* {
+  all: unset;
+  font-family: "Cartograph CF";
+}
+
+progressbar trough,
+scale trough {
+  all: unset;
+  border-radius: 15px;
+  min-height: 5px;
+  min-width: 30px;
+
+  progress {
+    border-radius: 15px;
+    min-height: 5px;
+    border-radius: 15px;
+    background-color: $green;
+  }
+}
+
+.subtext {
+  font-size: 0.8rem;
+}
+
+.player__control {
+  background-color: $green;
+  border-radius: $radius;
+  padding: 0 $x 0 $x;
+  font-size: 1.4rem;
+}
+
+.player__control:nth-child(1) {
+  margin: 0 $x / 2 0 $x / 2;
+}
+
+.player__infos {
+  margin-right: $x;
+}
+
+.image {
+  margin-right: $x;
+}
+
+.bar {
+  // border: 2px solid $green;
+  background-color: rgba($color: $black, $alpha: 0.4);
+  padding: $y;
+  border-radius: $radius * 1.5;
+}
+
+.dock {
+  background-color: $black;
+  // border: 2px solid $gray;
+  border-radius: $radius;
+  padding-top: $y / 2;
+  padding-bottom: $y / 2;
+  margin-left: $x;
+  margin-right: $x;
+  padding-left: $x;
+  padding-right: $x;
+}
+
+.chip {
+  border-radius: $radius;
+  background-color: $blue;
+  padding-top: $y / 4;
+  padding-bottom: $y / 4;
+  padding-left: $x / 2;
+  padding-right: $x / 2;
+}
+
+.status {
+  @extend .dock;
+  margin-right: 10px;
+  &__workspace {
+    font-size: 1.2rem;
+    margin-right: $x / 2;
+    margin-left: $x / 2;
+    &.active {
+      color: $magenta;
+    }
+  }
+}
+
+.time__icon {
+  font-size: 2rem;
+  margin-right: $x * 2;
+  color: $green;
+}
+
+.launcher {
+  margin-left: $x;
+  margin-right: $x;
+  font-size: 1.3rem;
+  color: $magenta;
+}
+
+.icon {
+  margin-left: $x;
+  margin-right: $x;
+  font-size: 1.4rem;
+}
+
+.stat {
+  margin-left: $x / 2;
+  margin-right: $x / 2;
+}

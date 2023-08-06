@@ -1,0 +1,9 @@
+background-color=#32323b
+border-size=0
+border-radius=10
+max-visible=1
+anchor=top-center
+default-timeout=3000
+height=300
+font=Cartograph CF 12
+padding=10

@@ -1,0 +1,228 @@
+(defpoll current-volume :interval "1s" "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
+(defpoll time	:interval "1s"	"date '+%R'")
+(defpoll date	:interval "1s"	"date '+%A, %d %B'")
+(deflisten wifi-status "bun scripts/wifi.ts")
+(deflisten brightness "bun scripts/brightness.ts status")
+
+(defwidget status []
+  (box
+    :class "status"
+    :space-evenly false
+    (box
+      :class "stat"
+      :valign "center"
+      :orientation "h"
+      :space-evenly false
+      (literal :class "icon" :valign "center" "󰃟")
+      (literal
+        :class "chip"
+        :valign "center"
+      {brightness + "%"})
+    )
+    (box
+      :class "stat"
+      :valign "center"
+      :orientation "h"
+      :space-evenly false
+      (literal :class "icon" :valign "center" "󰕾")
+      (literal
+        :class "chip"
+        :valign "center"
+      {current-volume + "%"})
+    )
+    (box
+      :class "stat"
+      :valign "center"
+      :orientation "h"
+      :space-evenly false
+      (literal :class "icon" :valign "center" {EWW_BATTERY.BAT0.status == "Full" ? "󱟢" : EWW_BATTERY.BAT0.status == "Charging" ? "󱟦" : "󱟞"})
+      (literal
+        :class "chip"
+        :valign "center"
+      {EWW_BATTERY.BAT0.capacity + "%"})
+    )
+    (box
+      :class "stat"
+      :valign "center"
+      :orientation "h"
+      :tooltip {wifi-status.ipv4}
+      :space-evenly false
+      (literal :class "icon" :valign "center" {wifi-status.icon})
+      (literal
+        :class "chip"
+        :valign "center"
+      {wifi-status.connection_name})
+    )
+  )
+)
+
+
+(deflisten workspaces_status :initial "[]" "bun scripts/workspaces.ts status")
+(defwidget workspaces []
+  (box :class "status" :space-evenly true
+    (for workspace in {workspaces_status.workspaces}
+      (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
+        (box :valign "center" :class "status__workspace ${workspace.id == workspaces_status.active_workspace_id ? "active" : ""}"
+          (literal {workspace.id == workspaces_status.active_workspace_id ? "󰋘" : "󰋙"})
+        )
+      )
+    )
+  )
+)
+
+(defwidget launcher []
+  (box
+    :class "status"
+    :space-evenly false
+    (button :class "launcher" :onclick "anyrun &"
+      :timeout 200
+      ""
+    )
+    
+  )
+)
+
+(defwidget clock []
+  (box
+    :class "status"
+    :space-evenly false
+    (box :class "time__icon" "󰥔")
+    (box
+      :valign "center"
+      :space-evenly false
+      :orientation "v"
+      (literal :halign "start" time)
+      (literal date)
+    )
+  )
+  
+)
+
+(deflisten player-status :initial '{ "status": "Stopped" }'	"bun scripts/player.ts status")
+(defwidget player []
+  (revealer
+    :space-evenly false
+    :duration 300
+    :reveal {player-status?.status != "Stopped"}
+    :transition "slideleft"
+    (box
+      :class "status"
+      :space-evenly false
+      (image :class "image" :path {player-status.art} :image-width 40 :image-height 40)
+      (box
+        :valign "center"
+        :space-evenly false
+        (revealer
+          :duration 300
+          :reveal {player-status.status == "Playing"}
+          :transition "slideleft"
+          (box
+            :class "player__infos"
+            :halign "start"
+            :valign "center"
+            :orientation "v"
+            :space-evenly false
+            (literal
+              :halign "start"
+              {player-status.title}
+            )
+            (literal
+              :class "subtext"
+              :halign "start"
+              {player-status.artist}
+            )
+            ; (progress
+              ;   :class "player__progress"
+              ;   :value 30
+            ; )
+          )
+        )
+        (box
+          :space-evenly false
+          (eventbox
+            :onclick "bun scripts/player.ts prev"
+            (literal
+              :class "player__control"
+              :valign "center"
+              :halign "start"
+              ""
+            )
+          )
+          (eventbox
+            :onclick "bun scripts/player.ts toggle"
+            (literal
+              :class "player__control"
+              :valign "center"
+              :halign "start"
+              {player-status.status == "Playing" ? "" : ""}
+            )
+          )
+          (eventbox
+            :onclick "bun scripts/player.ts next"
+            (literal
+              :class "player__control"
+              :valign "center"
+              :halign "start"
+              ""
+            )
+          )
+        )
+      )
+    )
+  )
+)
+
+(defwidget left []
+  (box
+    :halign "start"
+    :space-evenly false
+    (launcher)
+    (workspaces)
+  )
+)
+
+(defwidget center []
+  (box
+    :halign "center"
+    :space-evenly false
+    (clock)
+    (player)
+  )
+)
+
+
+
+(defwidget right []
+  (box
+    :halign "end"
+    :space-evenly false
+    (status)
+  )
+)
+
+(defwidget bar []
+  (box
+    :class "bar"
+    :orientation "h"
+    :vexpand "true"
+    :hexpand "true"
+    :valign "center"
+    (left)
+    (center)
+    (right)
+  )
+)
+
+(defwindow bar
+  :monitor 0
+  :geometry (geometry
+    :x "2.5%"
+    :y "10px"
+    :width "95%"
+    :height "40px"
+    :anchor "top center"
+  )
+  :exclusive true
+  :stacking "fg"
+  :namespace "smoussy_bar"
+  (bar))
