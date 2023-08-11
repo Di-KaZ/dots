@@ -10,10 +10,12 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   })
 end
+
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")
 
-require("remap")
+require("map")
 require("lsp")
 require("set")
+require("telescope_ext")

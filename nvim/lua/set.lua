@@ -13,5 +13,7 @@ vim.opt.incsearch = true
 vim.opt.hlsearch = true
 vim.opt.colorcolumn = "80"
 
+-- allow user config like .nvim.lua to be loaded per folder 
+vim.o.exrc = true
 
 vim.cmd.colorscheme "catppuccin-mocha"
