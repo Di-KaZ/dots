@@ -1,61 +1,67 @@
+;    󰃠 󰃟 󰃞 󰃝  󰂜 󰂝 󰂞 󰂟 󰂠 󰅸 󰍳
 (defpoll current-volume :interval "1s" "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
 (defpoll time	:interval "1s"	"date '+%R'")
 (defpoll date	:interval "1s"	"date '+%A, %d %B'")
-(deflisten wifi-status "bun scripts/wifi.ts")
-(deflisten brightness "bun scripts/brightness.ts status")
+(deflisten wifi-status :initial '{}' "bun scripts/wifi.ts")
+(deflisten brightness :initial '{}' "bun scripts/brightness.ts status")
 
 (defwidget status []
-  (box
-    :class "status"
-    :space-evenly false
+  (eventbox
+    ; :onhover "eww open control_center"
+    ; :onhoverlost "eww close control_center"
+    :timeout "1000ms"
     (box
-      :class "stat"
-      :valign "center"
-      :orientation "h"
+      :class "status"
       :space-evenly false
-      (literal :class "icon" :valign "center" "󰃟")
-      (literal
-        :class "chip"
+      (box
+        :class "stat"
         :valign "center"
-      {brightness + "%"})
-    )
-    (box
-      :class "stat"
-      :valign "center"
-      :orientation "h"
-      :space-evenly false
-      (literal :class "icon" :valign "center" "󰕾")
-      (literal
-        :class "chip"
-        :valign "center"
-      {current-volume + "%"})
-    )
-    (box
-      :class "stat"
-      :valign "center"
-      :orientation "h"
-      :space-evenly false
-      (literal :class "icon"
-        :valign "center"
-        {EWW_BATTERY.BAT0.status == "Full" ? "󱟢" : EWW_BATTERY.BAT0.status == "Charging" ? "󱟦" : "󱟞"}
+        :orientation "h"
+        :space-evenly false
+        (literal :class "icon" :valign "center" "󰃟")
+        (literal
+          :class "chip"
+          :valign "center"
+        {brightness + "%"})
       )
-      (literal
-        :class "chip"
+      (box
+        :class "stat"
         :valign "center"
-        {EWW_BATTERY.BAT0.capacity + "%"}
+        :orientation "h"
+        :space-evenly false
+        (literal :class "icon" :valign "center" "󰕾")
+        (literal
+          :class "chip"
+          :valign "center"
+        {current-volume + "%"})
       )
-    )
-    (box
-      :class "stat"
-      :valign "center"
-      :orientation "h"
-      :tooltip {wifi-status.ipv4}
-      :space-evenly false
-      (literal :class "icon" :valign "center" {wifi-status.icon})
-      (literal
-        :class "chip"
+      (box
+        :class "stat"
         :valign "center"
-      {wifi-status.connection_name})
+        :orientation "h"
+        :space-evenly false
+        (literal :class "icon"
+          :valign "center"
+          {EWW_BATTERY.BAT0.status == "Full" ? "󱟢" : EWW_BATTERY.BAT0.status == "Charging" ? "󱟦" : "󱟞"}
+        )
+        (literal
+          :class "chip"
+          :valign "center"
+          {EWW_BATTERY.BAT0.capacity + "%"}
+        )
+      )
+      (box
+        :class "stat"
+        :valign "center"
+        :orientation "h"
+        :tooltip {wifi-status?.ipv4}
+        :space-evenly false
+        (literal :class "icon" :valign "center" {wifi-status?.icon})
+        (literal
+          :class "chip"
+          :valign "center"
+        {wifi-status?.connection_name})
+      )
     )
   )
 )
@@ -64,7 +70,7 @@
 (deflisten workspaces_status :initial "[]" "bun scripts/workspaces.ts status")
 (defwidget workspaces []
   (box :class "status" :space-evenly true
-    (for workspace in {workspaces_status.workspaces}
+    (for workspace in {workspaces_status.workspaces ?: []}
       (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
         (box :valign "center" :class "status__workspace ${workspace.id == workspaces_status.active_workspace_id ? "active" : ""}"
           (literal {workspace.id == workspaces_status.active_workspace_id ? "󰋘" : "󰋙"})
@@ -80,7 +86,7 @@
     :space-evenly false
     (button :class "launcher" :onclick "anyrun &"
       :timeout 200
-      ""
+      "󰍳"
     )
     
   )
@@ -105,7 +111,6 @@
 (deflisten player-status :initial '{ "status": "Stopped" }'	"bun scripts/player.ts status")
 (defwidget player []
   (revealer
-    :space-evenly false
     :duration 300
     :reveal {player-status?.status != "Stopped"}
     :transition "slideleft"
@@ -159,6 +164,7 @@
               :valign "center"
               :halign "start"
               {player-status.status == "Playing" ? "" : ""}
+              
             )
           )
           (eventbox
@@ -195,7 +201,6 @@
 )
 
 
-
 (defwidget right []
   (box
     :halign "end"
@@ -229,4 +234,21 @@
   :exclusive true
   :stacking "fg"
   :namespace "smoussy_bar"
-  (bar))
+  (bar)
+)
+
+
+
+(defwindow control_center
+  :monitor 0
+  :geometry (geometry
+    :x "2.5%"
+    :y "0px"
+    :width "390px"
+    :height "200px"
+    :anchor "top right"
+  )
+  :exclusive false
+  :stacking "fg"
+  (box :class "test" (literal "hey"))
+)

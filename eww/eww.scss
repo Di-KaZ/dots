@@ -16,6 +16,11 @@ $cyan: #7fb4ca;
   font-family: "Cartograph CF";
 }
 
+.test {
+  background-color: #98bb6c;
+  border-radius: $radius;
+}
+
 progressbar trough,
 scale trough {
   all: unset;
@@ -103,8 +108,8 @@ scale trough {
 
 .launcher {
   margin-left: $x;
-  margin-right: $x;
-  font-size: 1.3rem;
+  margin-right: $x * 1.4;
+  font-size: 2rem;
   color: $magenta;
 }
 

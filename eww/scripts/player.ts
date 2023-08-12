@@ -29,7 +29,6 @@ async function get_player_status() {
       const player_status: PlayerStatus = JSON.parse(
         Buffer.from(status).toString()
       );
-
       player_status.title = truncate(player_status.title, 15);
       player_status.artist = truncate(player_status.artist, 15);
       console.error(player_status.art);

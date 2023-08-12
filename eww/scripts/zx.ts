@@ -32,6 +32,4 @@ export const $stream = (
 export const $ = async (
   cmd: TemplateStringsArray,
   ...args: Array<string | number>
-) => {
-  return readableStreamToText(await execWrapper(cmd, ...args).stdout);
-};
+) => readableStreamToText(execWrapper(cmd, ...args).stdout);
