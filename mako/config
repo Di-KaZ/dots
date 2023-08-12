@@ -7,3 +7,4 @@ default-timeout=3000
 height=300
 font=Cartograph CF 12
 padding=10
+history=1
