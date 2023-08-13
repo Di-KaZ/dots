@@ -25,7 +25,6 @@ require 'lspconfig'.lua_ls.setup {
                     -- library = vim.api.nvim_get_runtime_file("", true)
                 }
             })
-
             client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
         end
         return true
