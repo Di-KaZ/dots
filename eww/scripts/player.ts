@@ -29,8 +29,8 @@ async function get_player_status() {
       const player_status: PlayerStatus = JSON.parse(
         Buffer.from(status).toString()
       );
-      player_status.title = truncate(player_status.title, 15);
-      player_status.artist = truncate(player_status.artist, 15);
+      player_status.title = truncate(player_status.title, 10);
+      player_status.artist = truncate(player_status.artist, 10);
       console.error(player_status.art);
 
       if (player_status.art && player_status.art != "") {
@@ -48,11 +48,11 @@ async function get_player_status() {
         ${suqare_ratio / 4},${suqare_ratio / 4}" \
         ${MASK_TEMP}`;
 
-        // Apply the mask to the original image
-        await $`convert ${filepath} -gravity center \
-        -extent "${suqare_ratio}x${suqare_ratio}" ${MASK_TEMP} \
-        -alpha Off -compose CopyOpacity -composite ${PLAYER_IMG_TEMP}`;
-
+        // // Apply the mask to the original image
+        // await $`convert ${filepath} -gravity center \
+        // -extent "${suqare_ratio}x${suqare_ratio}" ${MASK_TEMP} \
+        // -alpha Off -compose CopyOpacity -composite ${PLAYER_IMG_TEMP}`;
+        //
         player_status.art = PLAYER_IMG_TEMP;
       }
       console.log(JSON.stringify(player_status));

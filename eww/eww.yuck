@@ -1,9 +1,37 @@
 ;    󰃠 󰃟 󰃞 󰃝  󰂜 󰂝 󰂞 󰂟 󰂠 󰅸 󰍳
 (defpoll current-volume :interval "1s" "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
-(defpoll time	:interval "1s"	"date '+%R'")
-(defpoll date	:interval "1s"	"date '+%A, %d %B'")
+(defpoll date	:interval "1s"	"date '+%R a %d %b'")
 (deflisten wifi-status :initial '{}' "bun scripts/wifi.ts")
 (deflisten brightness :initial '{}' "bun scripts/brightness.ts status")
+(defvar bun_path "/home/getmoussed/.bun/bin/bun")
+
+
+(defwidget notification_indicator []
+  (eventbox
+    :onclick "eww open notification_panel"
+    (box
+      :space-evenely false
+      :class "status"
+      :halign true
+      :valign true
+      (literal :class "icon" :valign "center" :halgin "center" "󰂜")
+    )
+   )
+ )
+
+(defwindow notification_panel 
+  :monitor 0
+  :geometry (geometry
+    :x "45%"
+    :y "0px"
+    :width "390px"
+    :height "200px"
+    :anchor "top right"
+  )
+  :exclusive false
+  :stacking "fg"
+  (box :class "test" (literal "hey"))
+)
 
 (defwidget status []
   (eventbox
@@ -14,29 +42,27 @@
       :class "status"
       :space-evenly false
       (box
-        :class "stat"
+        :class "chip"
         :valign "center"
         :orientation "h"
         :space-evenly false
         (literal :class "icon" :valign "center" "󰃟")
         (literal
-          :class "chip"
           :valign "center"
         {brightness + "%"})
       )
       (box
-        :class "stat"
+        :class "chip"
         :valign "center"
         :orientation "h"
         :space-evenly false
         (literal :class "icon" :valign "center" "󰕾")
         (literal
-          :class "chip"
           :valign "center"
         {current-volume + "%"})
       )
       (box
-        :class "stat"
+        :class "chip"
         :valign "center"
         :orientation "h"
         :space-evenly false
@@ -45,20 +71,18 @@
           {EWW_BATTERY.BAT0.status == "Full" ? "󱟢" : EWW_BATTERY.BAT0.status == "Charging" ? "󱟦" : "󱟞"}
         )
         (literal
-          :class "chip"
           :valign "center"
           {EWW_BATTERY.BAT0.capacity + "%"}
         )
       )
       (box
-        :class "stat"
+        :class "chip"
         :valign "center"
         :orientation "h"
         :tooltip {wifi-status?.ipv4}
         :space-evenly false
         (literal :class "icon" :valign "center" {wifi-status?.icon})
         (literal
-          :class "chip"
           :valign "center"
         {wifi-status?.connection_name})
       )
@@ -101,8 +125,7 @@
       :valign "center"
       :space-evenly false
       :orientation "v"
-      (literal :halign "start" time)
-      (literal date)
+      (literal :halign "start" date)
     )
   )
   
@@ -117,35 +140,34 @@
     (box
       :class "status"
       :space-evenly false
-      (image :class "image" :path {player-status.art} :image-width 40 :image-height 40)
-      (box
+      (image :class "image" :path {player-status.art} :image-width 40 :image-height 40) (box
         :valign "center"
         :space-evenly false
-        (revealer
-          :duration 300
-          :reveal {player-status.status == "Playing"}
-          :transition "slideleft"
-          (box
-            :class "player__infos"
-            :halign "start"
-            :valign "center"
-            :orientation "v"
-            :space-evenly false
-            (literal
-              :halign "start"
-              {player-status.title}
-            )
-            (literal
-              :class "subtext"
-              :halign "start"
-              {player-status.artist}
-            )
+        ;; (revealer
+        ;;   :duration 300
+        ;;   :reveal {player-status.status == "Playing"}
+        ;;   :transition "slideleft"
+        ;;   (box
+        ;;     :class "player__infos"
+        ;;     :halign "start"
+        ;;     :valign "center"
+        ;;     :orientation "v"
+        ;;     :space-evenly false
+        ;;     (literal
+        ;;       :halign "start"
+        ;;       {player-status.title}
+        ;;     )
+        ;;     (literal
+        ;;       :class "subtext"
+        ;;       :halign "start"
+        ;;       {player-status.artist}
+        ;;     )
             ; (progress
               ;   :class "player__progress"
               ;   :value 30
             ; )
-          )
-        )
+        ;;   )
+        ;; )
         (box
           :space-evenly false
           (eventbox
@@ -186,7 +208,7 @@
   (box
     :halign "start"
     :space-evenly false
-    (launcher)
+    ;; (launcher)
     (workspaces)
   )
 )
@@ -195,6 +217,7 @@
   (box
     :halign "center"
     :space-evenly false
+    ; (notification_indicator)
     (clock)
     (player)
   )
@@ -225,11 +248,11 @@
 (defwindow bar
   :monitor 0
   :geometry (geometry
-    :x "2.5%"
+    :x "0px"
     :y "10px"
-    :width "95%"
-    :height "40px"
-    :anchor "top center"
+    :width "99%"
+    :height "20px"
+    :anchor "bottom center"
   )
   :exclusive true
   :stacking "fg"
@@ -246,7 +269,7 @@
     :y "0px"
     :width "390px"
     :height "200px"
-    :anchor "top right"
+    :anchor "bottom right"
   )
   :exclusive false
   :stacking "fg"

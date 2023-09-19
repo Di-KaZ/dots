@@ -1,0 +1,3 @@
+return {
+  'kvrohit/mellow.nvim'
+}
