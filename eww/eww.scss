@@ -6,7 +6,7 @@ $black: #1f1f28;
 $gray: #9399b2;
 $red: #c34043;
 $green: #76946a;
-$yellow: #e6c384;
+$yellow: #ffa066;
 $blue: #7e9cd8;
 $magenta: #957fb8;
 $cyan: #7e9cd8;
@@ -15,11 +15,6 @@ $fg: #cdd6f4;
 * {
   all: unset;
   font-family: "Cartograph CF";
-}
-
-.test {
-  background-color: #98bb6c;
-  border-radius: $radius;
 }
 
 progressbar trough,
@@ -33,7 +28,7 @@ scale trough {
     border-radius: 15px;
     min-height: 5px;
     border-radius: 15px;
-    background-color: $green;
+    background-color: $yellow;
   }
 }
 
@@ -43,11 +38,11 @@ scale trough {
 }
 
 .player__control {
-  background-color: $green;
-  // border-radius: $radius;
-  padding: 0 $x 0 $x;
+  border-radius: $radius;
+  // background-color: $yellow;
+  padding: 0 $x / 2 0 $x / 2;
   font-size: 1.4rem;
-  color: $black;
+  // color: $white;
 }
 
 .player__control:nth-child(1) {
@@ -63,29 +58,21 @@ scale trough {
 }
 
 .bar {
-  // border: 2px solid $gray;
-  // background-color: rgba($color: $black, $alpha: 0.2);
-  // padding-bottom: $y / 2;
-  // padding-top: $y / 2;
-  background-color: rgba($color: $black, $alpha: 0.40);
-  // border: 2px solid $gray;
-// border-radius: 8px;
+  padding-bottom: $y / 4;
+  padding-top: $y / 4;
+  background-color: rgba($color: $black, $alpha: 0.2);
 }
 
 .dock {
-  // background-color: $black;
-  // border-radius: $radius;
   padding-top: $y / 2;
   padding-bottom: $y / 2;
-  margin-left: $x;
-  margin-right: $x;
   padding-left: $x;
   padding-right: $x;
 }
 
 .chip {
-  // border-radius: $radius;
-  background-color: $blue;
+  border-radius: $radius;
+  background-color: $green;
   color: $black;
   padding-top: $y / 4;
   padding-bottom: $y / 4;
@@ -96,7 +83,7 @@ scale trough {
 
 .status {
   @extend .dock;
-  margin-right: 10px;
+  // margin-right: 10px;
   &__workspace {
     font-size: 1.2rem;
     margin-right: $x / 2;

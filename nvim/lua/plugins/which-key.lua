@@ -29,13 +29,14 @@ return {
 
     wk.register({
       ["<leader>"] = {
+        b = { "<cmd>ToggleBlame virtual<cr>", "Toggle Blame" },
+        d = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Diagnose workspace" },
         f = {
           name = "Files",
           t    = { function() require('FTerm').toggle() end, "Open terminal" },
           f    = { "<cmd>Telescope find_files<cr>", "Find Files" },
           g    = { "<cmd>Telescope live_grep<cr>", "Find grep" },
           o    = { "<cmd>Telescope buffers<cr>", "opened files" },
-
         },
         p = {
           v = { "<cmd>Telescope file_browser path=%:p:h select_buffer=true <cr>", "File browser" }

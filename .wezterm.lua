@@ -12,7 +12,8 @@ end
 
 -- This is where you actually apply your config choices
 
-config.font = wezterm.font 'CaskaydiaCove Nerd Font Mono'
+config.font = wezterm.font 'Berkeley Mono'
+-- 'CaskaydiaCove Nerd Font Mono'
 config.font_size = 14
 config.window_background_opacity = 0.8
 config.win32_system_backdrop = 'Acrylic'

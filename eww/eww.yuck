@@ -1,6 +1,7 @@
 ;    󰃠 󰃟 󰃞 󰃝  󰂜 󰂝 󰂞 󰂟 󰂠 󰅸 󰍳
 (defpoll current-volume :interval "1s" "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
-(defpoll date	:interval "1s"	"date '+%R a %d %b'")
+(defpoll date	:interval "1s"	"date '+%d %b'")
+(defpoll time	:interval "1s"	"date '+%R'")
 (deflisten wifi-status :initial '{}' "bun scripts/wifi.ts")
 (deflisten brightness :initial '{}' "bun scripts/brightness.ts status")
 (defvar bun_path "/home/getmoussed/.bun/bin/bun")
@@ -123,8 +124,8 @@
     (box :class "time__icon" "󰥔")
     (box
       :valign "center"
-      :space-evenly false
       :orientation "v"
+      (literal :halign "start" time)
       (literal :halign "start" date)
     )
   )
@@ -143,31 +144,31 @@
       (image :class "image" :path {player-status.art} :image-width 40 :image-height 40) (box
         :valign "center"
         :space-evenly false
-        ;; (revealer
-        ;;   :duration 300
-        ;;   :reveal {player-status.status == "Playing"}
-        ;;   :transition "slideleft"
-        ;;   (box
-        ;;     :class "player__infos"
-        ;;     :halign "start"
-        ;;     :valign "center"
-        ;;     :orientation "v"
-        ;;     :space-evenly false
-        ;;     (literal
-        ;;       :halign "start"
-        ;;       {player-status.title}
-        ;;     )
-        ;;     (literal
-        ;;       :class "subtext"
-        ;;       :halign "start"
-        ;;       {player-status.artist}
-        ;;     )
-            ; (progress
-              ;   :class "player__progress"
-              ;   :value 30
-            ; )
-        ;;   )
-        ;; )
+         (revealer
+           :duration 300
+           :reveal {player-status.status == "Playing"}
+           :transition "slideleft"
+           (box
+             :class "player__infos"
+             :halign "start"
+             :valign "center"
+             :orientation "v"
+             :space-evenly false
+             (literal
+               :halign "start"
+               {player-status.title}
+             )
+             (literal
+               :class "subtext"
+               :halign "start"
+               {player-status.artist}
+             )
+          ; (progress
+            ;   :class "player__progress"
+            ;   :value 30
+          ; )
+           )
+         )
         (box
           :space-evenly false
           (eventbox
@@ -218,7 +219,6 @@
     :halign "center"
     :space-evenly false
     ; (notification_indicator)
-    (clock)
     (player)
   )
 )
@@ -229,11 +229,12 @@
     :halign "end"
     :space-evenly false
     (status)
+    (clock)
   )
 )
 
 (defwidget bar []
-  (box
+  (centerbox
     :class "bar"
     :orientation "h"
     :vexpand "true"
@@ -249,8 +250,8 @@
   :monitor 0
   :geometry (geometry
     :x "0px"
-    :y "10px"
-    :width "99%"
+    :y "0px"
+    :width "100%"
     :height "20px"
     :anchor "bottom center"
   )

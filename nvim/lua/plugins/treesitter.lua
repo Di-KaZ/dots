@@ -55,7 +55,6 @@ return {
       },
     },
   },
-  ---@param opts TSConfig
   config = function(_, opts)
     if type(opts.ensure_installed) == "table" then
       ---@type table<string, boolean>
@@ -87,76 +86,6 @@ return {
     local cmp = require('cmp')
     local lsp = require('lsp-zero');
     local dapui = require("dapui")
-
-    dapui.setup({
-      controls = {
-        element = "repl",
-        enabled = true,
-        icons = {
-          disconnect = "",
-          pause = "",
-          play = "",
-          run_last = "",
-          step_back = "",
-          step_into = "",
-          step_out = "",
-          step_over = "",
-          terminate = ""
-        }
-      },
-      element_mappings = {},
-      expand_lines = true,
-      floating = {
-        border = "single",
-        mappings = {
-          close = { "q", "<Esc>" }
-        }
-      },
-      force_buffers = true,
-      icons = {
-        collapsed = "+",
-        current_frame = "",
-        expanded = "-"
-      },
-      layouts = { {
-        elements = { {
-          id = "scopes",
-          size = 0.25
-        }, {
-          id = "breakpoints",
-          size = 0.25
-        }, {
-          id = "stacks",
-          size = 0.25
-        }, {
-          id = "watches",
-          size = 0.25
-        } },
-        position = "left",
-        size = 30
-      }, {
-        elements = { {
-          id = "repl",
-          size = 1
-        }, },
-        position = "bottom",
-        size = 10
-      } },
-      mappings = {
-        edit = "e",
-        expand = { "<CR>", "<2-LeftMouse>" },
-        open = "o",
-        remove = "d",
-        repl = "r",
-        toggle = "t"
-      },
-      render = {
-        indent = 1,
-        max_value_lines = 100
-      }
-    }
-    )
-
     lsp.preset()
 
     lsp.ensure_installed({
@@ -165,15 +94,10 @@ return {
       "lua_ls",
     })
 
-    require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+    -- require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
     lsp.on_attach(function(_, _)
       local dap = require("dap")
-      -- local mocha = require("catppuccin.palettes").get_palette("mocha")
-
-      -- vim.api.nvim_set_hl(0, 'DapBreakpoint', { fg = mocha.red })
-      -- vim.api.nvim_set_hl(0, 'DapLogPoint', { fg = mocha.green })
-      -- vim.api.nvim_set_hl(0, 'DapStopped', { fg = mocha.rosewater })
       vim.fn.sign_define('DapBreakpoint', {
         text = '󰏥',
         texthl = 'DapBreakpoint',
@@ -236,7 +160,7 @@ return {
 
       wk.register({
         K = { vim.lsp.buf.hover, "Symbol information" },
-        ["<F2>"] = { vim.lsp.buf.rename, "Rename" },
+        ["<F2>"] = { "<cmd>Lspsaga rename<cr>", "Rename" },
         ["<leader>"] = {
           d = {
             name = "Debbuger",
@@ -248,9 +172,10 @@ return {
         g = {
           r = { "<cmd> Telescope lsp_references <cr>", "Symbol references" },
           i = { "<cmd> Telescope lsp_implementations <cr>", "Symbol implementation" },
-          d = { "<cmd> Telescope lsp_definitions <cr>", "Symbol definition" },
+          f = { "<cmd>Lspsaga finder<cr>", "Symbol finder" },
+          d = { "<cmd>Lspsaga peek_definition<cr>", "Symbol definition" },
           D = { vim.lsp.buf.declaration, "Symbol declaration" },
-          a = { vim.lsp.buf.code_action, "Symbol declaration" },
+          a = { "<cmd>Lspsaga code_action<cr>", "Symbol declaration" },
           I = { "<cmd> Telescope diagnostics <cr>", "Diagnose Buffers" }
         }
       })
@@ -258,17 +183,32 @@ return {
 
 
     local cmp_action = lsp.cmp_action()
+    lsp.setup()
     cmp.setup({
-      completion = {
-        autocomplete = false,
+      window = {
+        documentation = {
+          winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+          border = "single",
+          scrollbar = false,
+        },
+        completion = {
+          winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+          col_offset = -3,
+          side_padding = 0,
+          scrollbar = false,
+          border = "single"
+        },
       },
       formatting = {
-        fields = { 'abbr', 'kind', 'menu' },
-        format = require('lspkind').cmp_format({
-          mode = 'symbol',          -- show only symbol annotations
-          maxwidth = 50,            -- prevent the popup from showing more than provided characters
-          ellipsis_char = '(more)', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead
-        })
+        fields = { "kind", "abbr" },
+        format = function(entry, vim_item)
+          local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 15, ellipsis_char = '', })(
+            entry, vim_item)
+          local strings = vim.split(kind.kind, "%s", { trimempty = true })
+          kind.kind = " " .. (strings[1] or "") .. " "
+          kind.menu = ""
+          return kind
+        end,
       },
       mapping = {
         ['<Tab>'] = cmp_action.tab_complete(),
@@ -277,22 +217,5 @@ return {
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
       }
     })
-
-    lsp.setup()
-    -- require("noice").setup({
-    --   lsp = {
-    --     -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-    --     override = {
-    --       -- override the default lsp markdown formatter with Noice
-    --       ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-    --       -- override the lsp markdown formatter with Noice
-    --       ["vim.lsp.util.stylize_markdown"] = true,
-    --       -- override cmp documentation with Noice (needs the other options to work)
-    --       ["cmp.entry.get_documentation"] = true,
-    --     },
-    --     hover = { enabled = true },     -- <-- HERE!
-    --     signature = { enabled = true }, -- <-- HERE!
-    --   },
-    -- })
   end
 }
