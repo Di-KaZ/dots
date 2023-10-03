@@ -53,6 +53,8 @@
         "/home/getmoussed/.local/share/nvim/lazy/fidget.nvim/lua",
         "/home/getmoussed/.local/share/nvim/lazy/caret.nvim/lua",
         "/home/getmoussed/Documents/perso/dots/nvim/lua",
+        "${3rd}/luv/library",
+        "${3rd}/luassert/library",
         "${3rd}/luv/library"
     ]
 }

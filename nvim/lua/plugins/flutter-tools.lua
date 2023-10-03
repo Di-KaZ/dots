@@ -11,7 +11,7 @@ return {
       enabled = false
     },
     widget_guides = {
-      enabled = true
+      enabled = false
     },
     debugger = {
       enabled = true,

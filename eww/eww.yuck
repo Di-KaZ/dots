@@ -136,7 +136,7 @@
 (defwidget player []
   (revealer
     :duration 300
-    :reveal {player-status?.status != "Stopped"}
+    :reveal true ;{player-status?.status != "Stopped"}
     :transition "slideleft"
     (box
       :class "status"
@@ -146,7 +146,7 @@
         :space-evenly false
          (revealer
            :duration 300
-           :reveal {player-status.status == "Playing"}
+           :reveal true ;{player-status.status == "Playing"}
            :transition "slideleft"
            (box
              :class "player__infos"

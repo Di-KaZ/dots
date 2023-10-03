@@ -60,13 +60,17 @@ scale trough {
 .bar {
   padding-bottom: $y / 4;
   padding-top: $y / 4;
-  background-color: rgba($color: $black, $alpha: 0.2);
+  // background-color: rgba($color: $black, $alpha: 0.8);
 }
 
 .dock {
+  border-radius: $radius;
+  background-color: rgba($color: $black, $alpha: 0.8);
   padding-top: $y / 2;
   padding-bottom: $y / 2;
   padding-left: $x;
+  margin-right: $x;
+  margin-left: $x;
   padding-right: $x;
 }
 
@@ -76,9 +80,9 @@ scale trough {
   color: $black;
   padding-top: $y / 4;
   padding-bottom: $y / 4;
-
   padding-right: $x / 2;
-  margin-left: $x;
+  margin-left: $x / 2;
+  margin-right: $x / 2;
 }
 
 .status {

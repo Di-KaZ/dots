@@ -6,19 +6,37 @@ return {
     vim.o.timeoutlen = 300
   end,
   opts = {
-    triggers_nowait = {
-      -- marks
-      "<leader>",
-      "`",
-      "'",
-      "g`",
-      "g'",
-      -- registers
-      '"',
-      "<c-r>",
-      -- spelling
-      "z=",
+    key_labels = {
+      ["<space>"] = "SPACE",
+      ["<leader>"] = "SPACE",
+      ["<cr>"] = "RETURN",
+      ["<tab>"] = "TAB",
     },
+    window = {
+      border = "single",
+      position = "bottom",
+      margin = { 1, 0, 1, 0 },
+      padding = { 0, 0, 0, 0 },
+      winblend = 0,
+    },
+    icons = {
+      breadcrumb = "",
+      separator = "",
+      group = " ",
+    },
+    -- triggers_nowait = {
+    --   -- marks
+    --   "<leader>",
+    --   "`",
+    --   "'",
+    --   "g`",
+    --   "g'",
+    --   -- registers
+    --   '"',
+    --   "<c-r>",
+    --   -- spelling
+    --   "z=",
+    -- },
     -- your configuration comes here
     -- or leave it empty to use the default settings
     -- refer to the configuration section below

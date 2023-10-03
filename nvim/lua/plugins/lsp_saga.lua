@@ -6,8 +6,12 @@ return {
       ui = {
         code_action = '',
       },
-      light_bulb = {
-        virutal_text = false,
+      lightbulb = {
+        enable = true,
+        enable_in_insert = true,
+        sign = false,
+        sign_priority = 40,
+        virtual_text = true,
       },
       implement = {
         enable = true

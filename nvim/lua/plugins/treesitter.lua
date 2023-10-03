@@ -202,7 +202,7 @@ return {
       formatting = {
         fields = { "kind", "abbr" },
         format = function(entry, vim_item)
-          local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 15, ellipsis_char = '', })(
+          local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 30, ellipsis_char = '', })(
             entry, vim_item)
           local strings = vim.split(kind.kind, "%s", { trimempty = true })
           kind.kind = " " .. (strings[1] or "") .. " "

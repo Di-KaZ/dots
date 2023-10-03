@@ -11,10 +11,9 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 
--- vim.g.termguicolors = true
 vim.opt.termguicolors = true
 vim.opt.pumheight = 5
-vim.opt.guicursor = ""
+vim.opt.cursorline = true
 vim.opt.nu = true
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
@@ -27,7 +26,7 @@ vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.incsearch = true
 vim.opt.hlsearch = true
--- vim.opt.colorcolumn = "80"
+
 -- allow user config like .nvim.lua to be loaded per folder
 vim.o.exrc = true
 
@@ -36,14 +35,21 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")
 
+local currentTelescopeBorder = vim.api.nvim_get_hl(0, { name = 'TelescopeBorder' })
+
 -- vim.opt.background = "dark" -- set this to dark or light
-vim.cmd.colorscheme "kanagawa"
--- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
--- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
---
+vim.cmd.colorscheme "moonfly"
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+vim.api.nvim_set_hl(0, "FloatBorder", { fg = currentTelescopeBorder.fg, bg = "none" })
+
+
+-- remove telescope border background
+vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = currentTelescopeBorder.fg, bg = "none" })
+
 -- Customization for Pmenu
-vim.api.nvim_set_hl(0, "PmenuSel", { bg = "", fg = "NONE" })
-vim.api.nvim_set_hl(0, "Pmenu", { fg = "#C5CDD9", bg = "" })
+vim.api.nvim_set_hl(0, "PmenuSel", { bg = currentTelescopeBorder.fg, })
+vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
 
 vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { fg = "#7E8294", bg = "NONE", strikethrough = true })
 vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = "#82AAFF", bg = "NONE", bold = true })

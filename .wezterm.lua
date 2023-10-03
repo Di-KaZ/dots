@@ -15,7 +15,7 @@ end
 config.font = wezterm.font 'Berkeley Mono'
 -- 'CaskaydiaCove Nerd Font Mono'
 config.font_size = 14
-config.window_background_opacity = 0.8
+config.window_background_opacity = 0.7
 config.win32_system_backdrop = 'Acrylic'
 
 -- For example, changing the color scheme:
