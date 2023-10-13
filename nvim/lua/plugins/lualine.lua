@@ -1,4 +1,4 @@
-theme = function()
+local theme = function()
   local colors = {
     darkgray = "#16161d",
     gray = "#727169",

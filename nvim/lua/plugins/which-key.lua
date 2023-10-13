@@ -48,7 +48,10 @@ return {
     wk.register({
       ["<leader>"] = {
         b = { "<cmd>ToggleBlame virtual<cr>", "Toggle Blame" },
-        d = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Diagnose workspace" },
+        d = {
+          w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Diagnose workspace" },
+        },
+        g = { "<cmd>Neogit<cr>", "Git" },
         f = {
           name = "Files",
           t    = { function() require('FTerm').toggle() end, "Open terminal" },
