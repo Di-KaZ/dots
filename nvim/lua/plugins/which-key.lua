@@ -44,14 +44,28 @@ return {
   config = function(_, opts)
     local wk = require("which-key")
     wk.setup(opts)
-
     wk.register({
+      -- -- Better window navigation
+      ["<C-h>"] = { "<C-w><C-h>", "Navigate windows to the left" },
+      ["<C-j>"] = { "<C-w><C-j>", "Navigate windows down" },
+      ["<C-k>"] = { "<C-w><C-k>", "Navigate windows up" },
+      ["<C-l>"] = { "<C-w><C-l>", "Navigate windows to the right" },
+      -- Move with shift-arrows
+      ["<S-Left>"] = { "<C-w><S-h>", "Move window to the left" },
+      ["<S-Down>"] = { "<C-w><S-j>", "Move window down" },
+      ["<S-Up>"] = { "<C-w><S-k>", "Move window up" },
+      ["<S-Right>"] = { "<C-w><S-l>", "Move window to the right" },
+      -- -- Resize with arrows
+      -- ["<ALT-Up>"] = { "<cmd>resize +2<CR>" },
+      -- ["<ALT-Down>"] = { "<cmd>resize -2<CR>" },
+      -- ["<ALT-Left>"] = { "<cmd>vertical resize +2<CR>" },
+      -- ["<ALT-Right>"] = { "<cmd>vertical resize -2<CR>" },
       ["<leader>"] = {
         b = { "<cmd>ToggleBlame virtual<cr>", "Toggle Blame" },
+        g = { "<cmd>Neogit<cr>", "Git" },
         d = {
           w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Diagnose workspace" },
         },
-        g = { "<cmd>Neogit<cr>", "Git" },
         f = {
           name = "Files",
           t    = { function() require('FTerm').toggle() end, "Open terminal" },
@@ -60,7 +74,8 @@ return {
           o    = { "<cmd>Telescope buffers<cr>", "opened files" },
         },
         p = {
-          v = { "<cmd>Telescope file_browser path=%:p:h select_buffer=true <cr>", "File browser" }
+          v = { "<cmd>Telescope file_browser path=%:p:h select_buffer=true <cr>", "File browser" },
+          f = { "<cmd>NvimTreeToggle<cr>", "File browser new" }
         },
         t = {
           name = "Flutter",

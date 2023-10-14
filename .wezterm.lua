@@ -13,16 +13,16 @@ end
 -- This is where you actually apply your config choices
 
 -- config.font = wezterm.font 'Berkeley Mono'
-config.font = wezterm.font 'Maple Mono NF'
+config.font                      = wezterm.font 'Maple Mono NF'
 -- config.harfbuzz_features = { 'calt=1', 'clig=1', 'liga=1' }
 
 -- 'CaskaydiaCove Nerd Font Mono'
-config.font_size = 14
-config.window_background_opacity = 0.8
+config.font_size                 = 14
+config.window_background_opacity = .8
 
 -- For example, changing the color scheme:
-config.enable_tab_bar = false
-config.window_padding = {
+config.enable_tab_bar            = false
+config.window_padding            = {
   left = 30,
   right = 30,
   top = 30,
@@ -30,8 +30,10 @@ config.window_padding = {
 }
 
 -- config.color_scheme = 'Argonaut'
-config.color_scheme = 'ChallengerDeep'
-
+config.color_scheme              = 'nord'
+config.colors                    = {
+  background = "#191b29"
+}
 --
 -- config.force_reverse_video_cursor = true;
 -- config.colors = {

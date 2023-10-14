@@ -41,7 +41,7 @@ require("lazy").setup("plugins")
 local currentTelescopeBorder = vim.api.nvim_get_hl(0, { name = 'TelescopeBorder' })
 
 -- vim.opt.background = "dark" -- set this to dark or light
-vim.cmd.colorscheme "kanagawa"
+vim.cmd.colorscheme "nightcity"
 
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
@@ -53,44 +53,6 @@ vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = currentTelescopeBorder.fg, bg =
 -- Customization for Pmenu
 vim.api.nvim_set_hl(0, "PmenuSel", { bg = currentTelescopeBorder.fg, })
 vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
-
-vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { fg = "#7E8294", strikethrough = true })
-vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = "#82AAFF", bold = true })
-vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = "#82AAFF", bold = true })
-vim.api.nvim_set_hl(0, "CmpItemMenu", { fg = "#C792EA", italic = true })
-
-vim.api.nvim_set_hl(0, "CmpItemKindField", { fg = "#EED8DA" })
-vim.api.nvim_set_hl(0, "CmpItemKindProperty", { fg = "#EED8DA" })
-vim.api.nvim_set_hl(0, "CmpItemKindEvent", { fg = "#EED8DA" })
-
-vim.api.nvim_set_hl(0, "CmpItemKindText", { fg = "#C3E88D" })
-vim.api.nvim_set_hl(0, "CmpItemKindEnum", { fg = "#C3E88D" })
-vim.api.nvim_set_hl(0, "CmpItemKindKeyword", { fg = "#C3E88D" })
-
-vim.api.nvim_set_hl(0, "CmpItemKindConstant", { fg = "#FFE082" })
-vim.api.nvim_set_hl(0, "CmpItemKindConstructor", { fg = "#FFE082" })
-vim.api.nvim_set_hl(0, "CmpItemKindReference", { fg = "#FFE082" })
-
-vim.api.nvim_set_hl(0, "CmpItemKindFunction", { fg = "#EADFF0" })
-vim.api.nvim_set_hl(0, "CmpItemKindStruct", { fg = "#EADFF0" })
-vim.api.nvim_set_hl(0, "CmpItemKindClass", { fg = "#EADFF0" })
-vim.api.nvim_set_hl(0, "CmpItemKindModule", { fg = "#EADFF0" })
-vim.api.nvim_set_hl(0, "CmpItemKindOperator", { fg = "#EADFF0" })
-
-vim.api.nvim_set_hl(0, "CmpItemKindVariable", { fg = "#C5CDD9" })
-vim.api.nvim_set_hl(0, "CmpItemKindFile", { fg = "#C5CDD9" })
-
-vim.api.nvim_set_hl(0, "CmpItemKindUnit", { fg = "#F5EBD9" })
-vim.api.nvim_set_hl(0, "CmpItemKindSnippet", { fg = "#F5EBD9" })
-vim.api.nvim_set_hl(0, "CmpItemKindFolder", { fg = "#F5EBD9" })
-
-vim.api.nvim_set_hl(0, "CmpItemKindMethod", { fg = "#DDE5F5" })
-vim.api.nvim_set_hl(0, "CmpItemKindValue", { fg = "#DDE5F5" })
-vim.api.nvim_set_hl(0, "CmpItemKindEnumMember", { fg = "#DDE5F5" })
-
-vim.api.nvim_set_hl(0, "CmpItemKindInterface", { fg = "#D8EEEB" })
-vim.api.nvim_set_hl(0, "CmpItemKindColor", { fg = "#D8EEEB" })
-vim.api.nvim_set_hl(0, "CmpItemKindTypeParameter", { fg = "#D8EEEB" })
 
 -- Flash
 vim.api.nvim_set_hl(0, "FlashLabel", { fg = "#C3E88D" })

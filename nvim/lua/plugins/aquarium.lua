@@ -1,3 +1,0 @@
-return {
-  'frenzyexists/aquarium-vim'
-}
