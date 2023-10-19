@@ -1,4 +1,5 @@
 return {
+  enabled = false,
   'nvimdev/lspsaga.nvim',
   opts = {},
   config = function()

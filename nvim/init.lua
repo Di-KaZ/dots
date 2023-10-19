@@ -11,6 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 
+vim.opt.clipboard:append { 'unnamedplus' }
 vim.opt.termguicolors = true
 vim.opt.pumheight = 5
 vim.opt.cursorline = true

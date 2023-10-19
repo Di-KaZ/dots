@@ -159,8 +159,8 @@ return {
       local wk = require("which-key")
 
       wk.register({
-        K = { vim.lsp.buf.hover, "Symbol information" },
-        ["<F2>"] = { "<cmd>Lspsaga rename<cr>", "Rename" },
+        K = { "<cmd>LspUI hover<cr>", "Symbol information" },
+        ["<F2>"] = { "<cmd>LspUI rename<cr>", "Rename" },
         ["<leader>"] = {
           d = {
             name = "Debbuger",
@@ -170,12 +170,10 @@ return {
           },
         },
         g = {
-          r = { "<cmd> Telescope lsp_references <cr>", "Symbol references" },
-          i = { "<cmd> Telescope lsp_implementations <cr>", "Symbol implementation" },
-          f = { "<cmd>Lspsaga finder<cr>", "Symbol finder" },
-          d = { "<cmd>Lspsaga peek_definition<cr>", "Symbol definition" },
+          f = { "<cmd>LspUI reference<cr>", "Symbol finder" },
+          d = { "<cmd>LspUI definition<cr>", "Symbol definition" },
           D = { vim.lsp.buf.declaration, "Symbol declaration" },
-          a = { "<cmd>Lspsaga code_action<cr>", "Symbol declaration" },
+          a = { "<cmd>LspUI code_action<cr>", "Symbol declaration" },
           I = { "<cmd> Telescope diagnostics <cr>", "Diagnose Buffers" }
         }
       })

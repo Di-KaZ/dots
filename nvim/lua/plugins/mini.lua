@@ -2,20 +2,20 @@ return {
   'echasnovski/mini.nvim',
   version = false,
   config = function()
-    require('mini.animate').setup({
-      cursor = {
-        enable = false,
-      },
-      -- Window open
-      open = {
-        enable = false,
-      },
-      -- Window close
-      close = {
-        -- Whether to enable this animation
-        enable = false,
-      },
-    })
+    -- require('mini.animate').setup({
+    --   cursor = {
+    --     enable = false,
+    --   },
+    --   -- Window open
+    --   open = {
+    --     enable = false,
+    --   },
+    --   -- Window close
+    --   close = {
+    --     -- Whether to enable this animation
+    --     enable = false,
+    --   },
+    -- })
 
     require('mini.pairs').setup()
     require('mini.move').setup()
