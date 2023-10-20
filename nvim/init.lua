@@ -39,17 +39,10 @@ vim.api.nvim_set_hl(0, "DiffAdd", { bg = "#1f1f28" })
 
 require("lazy").setup("plugins")
 
-local currentTelescopeBorder = vim.api.nvim_get_hl(0, { name = 'TelescopeBorder' })
 
 -- vim.opt.background = "dark" -- set this to dark or light
 vim.cmd.colorscheme "nightcity"
 
-vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-vim.api.nvim_set_hl(0, "FloatBorder", { fg = currentTelescopeBorder.fg, bg = "none" })
-
--- remove telescope border background
-vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = currentTelescopeBorder.fg, bg = "none" })
 
 -- Customization for Pmenu
 vim.api.nvim_set_hl(0, "PmenuSel", { bg = currentTelescopeBorder.fg, })
