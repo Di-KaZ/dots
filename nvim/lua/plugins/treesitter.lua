@@ -144,12 +144,14 @@ return {
       })
 
       vim.diagnostic.config({
-        virtual_text = false,
-        underline = true,
-        -- {
-        -- source = "always",  -- Or "if_many"
-        -- prefix = '■', -- Could be '■', '▎', 'x'
-        -- },
+        underline = false,
+        virtual_text = {
+          source = false, -- Or "if_many"
+          prefix = '', -- Could be '■', '▎', 'x'
+          -- format = function(diagnostic)
+          --   return ''
+          -- end
+        },
         severity_sort = true,
         float = {
           source = "always", -- Or "if_many"
@@ -172,8 +174,8 @@ return {
           },
         },
         g = {
-          f = { "<cmd>LspUI reference<cr>", "Symbol finder" },
-          d = { "<cmd>LspUI definition<cr>", "Symbol definition" },
+          f = { "<cmd>Glance references<cr>", "Symbol finder" },
+          d = { "<cmd>Glance definitions<cr>", "Symbol definition" },
           D = { vim.lsp.buf.declaration, "Symbol declaration" },
           a = { "<cmd>LspUI code_action<cr>", "Symbol declaration" },
           I = { "<cmd> Telescope diagnostics <cr>", "Diagnose Buffers" }

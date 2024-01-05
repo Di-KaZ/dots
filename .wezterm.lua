@@ -30,7 +30,8 @@ config.window_padding            = {
 }
 
 -- config.color_scheme = 'Argonaut'
-config.color_scheme              = 'nord'
+-- config.color_scheme              = 'nord'
+config.color_scheme              = "biscuit-dark"
 config.colors                    = {
   background = "#191b29"
 }

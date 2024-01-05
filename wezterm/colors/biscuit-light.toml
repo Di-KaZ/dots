@@ -1,0 +1,82 @@
+[colors]
+ansi = [
+    "#483939",
+    "#B54851",
+    "#D0796D",
+    "#C6846C",
+    "#938579",
+    "#877B85",
+    "#794F65",
+    "#E0CFC6",
+]
+background = "#FFF7EB"
+brights = [
+    "#9C8181",
+    "#C8767D",
+    "#DB9A91",
+    "#D4A391",
+    "#AFA49B",
+    "#A69DA4",
+    "#A3728B",
+    "#FFF7EB",
+]
+compose_cursor = "#2D2424"
+cursor_bg = "#2D2424"
+cursor_border = "#2D2424"
+cursor_fg = "#FFF7EB"
+foreground = "#2D2424"
+scrollbar_thumb = "#483939"
+selection_bg = 'rgba(100% 97% 92% 50%)'
+selection_fg = 'rgba(0% 0% 0% 0%)'
+
+[colors.indexed]
+
+[colors.tab_bar]
+background = "#FFF7EB"
+
+[colors.tab_bar.active_tab]
+bg_color = "#877B85"
+fg_color = "#FFF7EB"
+intensity = 'Normal'
+italic = false
+strikethrough = false
+underline = 'None'
+
+[colors.tab_bar.inactive_tab]
+bg_color = "#FFF7EB"
+fg_color = "#2D2424"
+intensity = 'Normal'
+italic = false
+strikethrough = false
+underline = 'None'
+
+[colors.tab_bar.inactive_tab_hover]
+bg_color = "#483939"
+fg_color = "#2D2424"
+intensity = 'Normal'
+italic = true
+strikethrough = false
+underline = 'None'
+
+[colors.tab_bar.new_tab]
+bg_color = "#FFF7EB"
+fg_color = "#2D2424"
+intensity = 'Normal'
+italic = false
+strikethrough = false
+underline = 'None'
+
+[colors.tab_bar.new_tab_hover]
+bg_color = "#D0796D"
+fg_color = "#2D2424"
+intensity = 'Normal'
+italic = true
+strikethrough = false
+underline = 'None'
+
+[metadata]
+aliases = []
+author = 'letrad'
+name = 'biscuit-light'
+origin_url = 'https://github.com/letrad/wezterm'
+

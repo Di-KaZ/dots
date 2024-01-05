@@ -62,6 +62,7 @@ return {
       -- ["<ALT-Right>"] = { "<cmd>vertical resize -2<CR>" },
       ["<leader>"] = {
         b = { "<cmd>ToggleBlame virtual<cr>", "Toggle Blame" },
+        h = { "<cmd>LspUI inlay_hint<cr>", "Toggle inlay hint" },
         g = { "<cmd>Neogit<cr>", "Git" },
         d = {
           w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Diagnose workspace" },

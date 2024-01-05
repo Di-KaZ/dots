@@ -1,8 +1,35 @@
 .bar {
-  background: transparent;
-  font-family: 'Maple Mono NF';
-}
+  background-color: rgba(25, 27, 41, 0.85); }
 
-.date {
-  font-size: 10px;
-}
+.outer_padding {
+  margin: 10px; }
+
+.workspaces {
+  margin-right: 20px; }
+
+.workspace {
+  border-radius: 20px;
+  padding: 5px;
+  padding-right: 5px;
+  background-color: white;
+  transition: padding-left ease-in-out 300ms, background-color ease-in-out 200ms; }
+  .workspace.active {
+    background-color: red;
+    padding-left: 10px;
+    padding-right: 10px; }
+  .workspace.empty {
+    padding: 3px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    opacity: .6; }
+
+.sys_tray_btn {
+  margin: 0px;
+  padding: 0px;
+  background-color: transparent; }
+
+.media_player .title {
+  font-size: 12px; }
+
+.media_player .artists {
+  font-size: 10px; }

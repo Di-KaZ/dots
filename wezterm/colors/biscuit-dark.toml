@@ -1,0 +1,82 @@
+[colors]
+ansi = [
+    '#2d2424',
+    '#cf2241',
+    '#f07942',
+    '#e39c45',
+    '#949f6b',
+    '#716c97',
+    '#ae3f8a',
+    '#9c8181',
+]
+background = '#1a1515'
+brights = [
+    '#2d2424',
+    '#e3556f',
+    '#f49d75',
+    '#edbf86',
+    '#b0b893',
+    '#9894b3',
+    '#ca6bac',
+    '#ffe9c7',
+]
+compose_cursor = '#ffe9c7'  # cursor color to be the foreground
+cursor_bg = '#ffe9c7'
+cursor_border = '#ffe9c7'
+cursor_fg = '#1a1515'  # cursor foreground to be the background
+foreground = '#ffe9c7'
+scrollbar_thumb = '#2d2424'  # scrollbar thumb to be the black color
+selection_bg = 'rgba(10% 8% 8% 50%)'  # a slightly transparent version of the background
+selection_fg = 'rgba(0% 0% 0% 0%)'  # Keeping this as transparent
+
+[colors.indexed]
+
+[colors.tab_bar]
+background = '#1a1515'
+
+[colors.tab_bar.active_tab]
+bg_color = '#716c97'  # Using magenta for active tab
+fg_color = '#1a1515'
+intensity = 'Normal'
+italic = false
+strikethrough = false
+underline = 'None'
+
+[colors.tab_bar.inactive_tab]
+bg_color = '#1a1515'
+fg_color = '#ffe9c7'
+intensity = 'Normal'
+italic = false
+strikethrough = false
+underline = 'None'
+
+[colors.tab_bar.inactive_tab_hover]
+bg_color = '#2d2424'  # Using black for hover
+fg_color = '#ffe9c7'
+intensity = 'Normal'
+italic = true
+strikethrough = false
+underline = 'None'
+
+[colors.tab_bar.new_tab]
+bg_color = '#1a1515'
+fg_color = '#ffe9c7'
+intensity = 'Normal'
+italic = false
+strikethrough = false
+underline = 'None'
+
+[colors.tab_bar.new_tab_hover]
+bg_color = '#e39c45'  # Using green for hover
+fg_color = '#ffe9c7'
+intensity = 'Normal'
+italic = true
+strikethrough = false
+underline = 'None'
+
+[metadata]
+aliases = []
+author = 'letrad'
+name = 'biscuit-dark'
+origin_url = 'https://github.com/letrad/wezterm'
+
