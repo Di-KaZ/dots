@@ -1,25 +1,27 @@
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 import App from 'resource:///com/github/Aylur/ags/app.js'
-import * as Utils from 'resource:///com/github/Aylur/ags/utils.js'
-import Hyprland from 'resource:///com/github/Aylur/ags/service/hyprland.js';
+import { monitorFile, exec } from 'resource:///com/github/Aylur/ags/utils.js'
 import Workspaces from './widgets/workspaces.js';
+import Network from './widgets/network.js';
 import SysTray from './widgets/sys_tray.js';
 import FocusedWindow from './widgets/focused_window.js';
 import Date from './widgets/date.js';
 import MediaPlayer from './widgets/media_player.js';
+import Volume from './widgets/volume.js';
+import Battery from './widgets/battery.js';
 import Gtk from 'gi://Gtk';
 
 const loadScss = () => {
   const scss = `${App.configDir}/style/style.scss`
   const css = `${App.configDir}/style.css`
   console.log(`[INFO] reloading css...`)
-  Utils.exec(`sassc ${scss} ${css}`)
+  exec(`sassc ${scss} ${css}`)
   App.resetCss()
   App.applyCss(css)
 }
 
 // auto reload css
-Utils.monitorFile(
+monitorFile(
   `${App.configDir}/style`,
   loadScss,
   'directory',
@@ -50,7 +52,11 @@ const Bar = Widget.Window({
     }),
     end_widget: Widget.Box({
       halign: Gtk.Align.END,
+      spacing: 20,
       children: [
+        Volume,
+        Network,
+        Battery,
         SysTray
       ]
     }),

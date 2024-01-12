@@ -4,42 +4,62 @@ import { MprisPlayer } from 'types/service/mpris';
 import Gtk from 'gi://Gtk';
 import { clamp } from '../utils/functions.js';
 
-const Player = (player: MprisPlayer) => Widget.Box({
-  class_name: 'media_player',
-  spacing: 10,
-  children: [
-    Widget.Label({
-      label: '𝅘𝅥𝅮',
-      class_names: ['media_player icon'],
-    }),
-    Widget.Revealer({
-      transition_duration: 1000,
-      transition: 'slide_right',
-      setup: self => {
-        self.hook(player, revealer => revealer.reveal_child = player.play_back_status === 'Playing')
-      },
-      child: Widget.Box({
-        vertical: true,
-        children: [
-          Widget.Label({
-            class_names: ['media_player', 'title'],
-            halign: Gtk.Align.START,
-          }).hook(player, label => {
-            const { track_title } = player;
-            label.label = clamp(track_title, 30);
+
+const Player = (player: MprisPlayer) => {
+  return Widget.Box({
+    class_name: 'media_player',
+    spacing: 10,
+    children: [
+      Widget.Overlay({
+        child: Widget.Box({
+          css: `
+                min-width: 40px;
+                min-height: 40px;
+                border-radius: 40px;
+              `
+        }),
+        overlays: player.cover_path ? [
+          Widget.Icon({
+            size: 70,
+            icon: player.bind('cover_path')
           }),
-          Widget.Label({
-            class_names: ['media_player', 'artists'],
-            halign: Gtk.Align.START,
-          }).hook(player, label => {
-            const { track_artists } = player;
-            label.label = clamp(`${track_artists.join(', ')}`, 20);
-          }),
-        ]
+        ] : [],
       }),
-    })
-  ]
-})
+      Widget.Revealer({
+        transition_duration: 500,
+        transition: 'slide_right',
+        setup: self => {
+          self.hook(player, revealer => revealer.reveal_child = player.play_back_status === 'Playing');
+        },
+        child: Widget.Box({
+          vertical: true,
+          valign: Gtk.Align.CENTER,
+          children: [
+            Widget.Label({
+              class_names: ['media_player', 'title'],
+              halign: Gtk.Align.START,
+              label: player.bind('track_title').transform(track_title => clamp(track_title, 30))
+            }),
+            Widget.Label({
+              class_names: ['media_player', 'artists'],
+              halign: Gtk.Align.START,
+              label: player.bind('track_artists').transform(track_artists => clamp(`${track_artists.join(', ')}`, 20))
+            }),
+            Widget.ProgressBar({
+              css: `min-height: 2px; margin-top: 2px`,
+              setup: self => {
+                self.poll(1000, pb => {
+                  const percent = (player.position / player.length);
+                  return pb.value = percent;
+                })
+              }
+            })
+          ]
+        }),
+      })
+    ]
+  });
+}
 
 export default Widget.Box()
   .bind('children', Mpris, 'players', players => {

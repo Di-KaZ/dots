@@ -56,6 +56,24 @@ return {
     end
   },
   {
+    'DanielEliasib/sweet-fusion',
+    enabled = true,
+    name = 'sweet-fusion',
+    priority = 1000,
+    opts = {
+      -- Set transparent background
+      transparency = true,
+      dim_inactive = true,
+    }
+  },
+  {
+    "kihachi2000/yash.nvim",
+    enabled = false,
+    priority = 1000,
+    lazy = false,
+
+  },
+  {
     'Yazeed1s/oh-lucy.nvim',
     enabled = false,
     priority = 1000,
@@ -68,7 +86,7 @@ return {
   },
   {
     'cryptomilk/nightcity.nvim',
-    enabled = true,
+    enabled = false,
     priority = 1000,
     lazy = false,
     version = false,

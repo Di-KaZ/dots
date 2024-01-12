@@ -42,7 +42,7 @@ require("lazy").setup("plugins")
 
 
 -- vim.opt.background = "dark" -- set this to dark or light
-vim.cmd.colorscheme "nightcity"
+vim.cmd.colorscheme("sweet-fusion")
 
 
 -- Customization for Pmenu

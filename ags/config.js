@@ -10,13 +10,15 @@ const paths = (await execAsync(['find', src_folder, '-type', 'f'])).split('\n');
 
 console.log(`building ags config from ${src_folder}`);
 
+console.log(`building : \n ${paths.join('\n')}`);
+
 await execAsync([
   'bun', 'build', ...paths,
   '--outdir', outdir,
   '--external', '*',
-]).catch(e => console.error('fiwheoifhw', e));
+]).catch(e => console.error(e));
 
 
-const main = await import(`file://${outdir}/main.js`)
+const main = await import(`file://${outdir}/ts/main.js`)
 
 export default main.default

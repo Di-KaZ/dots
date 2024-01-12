@@ -1,8 +1,36 @@
+button {
+  margin: 0px;
+  padding: 0px;
+  background-color: transparent; }
+
+image {
+  font-size: 20px; }
+
+scale contents {
+  min-width: 100px; }
+  scale contents trough {
+    min-height: 10px;
+    border-radius: 20px; }
+    scale contents trough highlight {
+      background: none;
+      background-color: red;
+      border-radius: 20px; }
+    scale contents trough slider {
+      min-height: 1px;
+      min-width: 1px;
+      box-shadow: none;
+      background-color: transparent; }
+
+.battery {
+  font-size: 6px; }
+
 .bar {
   background-color: rgba(25, 27, 41, 0.85); }
 
 .outer_padding {
-  margin: 10px; }
+  margin-left: 10px;
+  margin-right: 10px;
+  min-height: 50px; }
 
 .workspaces {
   margin-right: 20px; }
@@ -23,13 +51,14 @@
     margin-bottom: 2px;
     opacity: .6; }
 
-.sys_tray_btn {
-  margin: 0px;
+.media_player .button {
   padding: 0px;
+  margin: 0px;
   background-color: transparent; }
 
 .media_player .title {
   font-size: 12px; }
 
 .media_player .artists {
-  font-size: 10px; }
+  font-size: 10px;
+  opacity: .6; }
