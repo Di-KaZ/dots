@@ -1,5 +1,5 @@
 -- Pull in the wezterm API
-local wezterm = require 'wezterm'
+local wezterm = require("wezterm")
 
 -- This table will hold the configuration.
 local config = {}
@@ -7,33 +7,35 @@ local config = {}
 -- In newer versions of wezterm, use the config_builder which will
 -- help provide clearer error messages
 if wezterm.config_builder then
-  config = wezterm.config_builder()
+	config = wezterm.config_builder()
 end
 
 -- This is where you actually apply your config choices
 
 -- config.font = wezterm.font 'Berkeley Mono'
-config.font                      = wezterm.font 'Maple Mono NF'
+config.font = wezterm.font("Monaspace Neon")
+
+-- config.font = wezterm.font("Sophistry Sans Roguelike")
 -- config.harfbuzz_features = { 'calt=1', 'clig=1', 'liga=1' }
 
 -- 'CaskaydiaCove Nerd Font Mono'
-config.font_size                 = 14
-config.window_background_opacity = .8
+config.font_size = 14
+config.window_background_opacity = 0.8
 
 -- For example, changing the color scheme:
-config.enable_tab_bar            = false
-config.window_padding            = {
-  left = 30,
-  right = 30,
-  top = 30,
-  bottom = 30,
+config.enable_tab_bar = false
+config.window_padding = {
+	left = 30,
+	right = 30,
+	top = 30,
+	bottom = 30,
 }
 
 -- config.color_scheme = 'Argonaut'
 -- config.color_scheme              = 'nord'
-config.color_scheme              = "biscuit-dark"
-config.colors                    = {
-  background = "#191b29"
+config.color_scheme = "dracula"
+config.colors = {
+	background = "#191b29",
 }
 --
 -- config.force_reverse_video_cursor = true;

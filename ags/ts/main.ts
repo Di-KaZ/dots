@@ -12,55 +12,55 @@ import Battery from './widgets/battery.js';
 import Gtk from 'gi://Gtk';
 
 const loadScss = () => {
-  const scss = `${App.configDir}/style/style.scss`
-  const css = `${App.configDir}/style.css`
-  console.log(`[INFO] reloading css...`)
-  exec(`sassc ${scss} ${css}`)
-  App.resetCss()
-  App.applyCss(css)
+	const scss = `${App.configDir}/style/style.scss`
+	const css = `${App.configDir}/style.css`
+	console.log(`[INFO] reloading css...`)
+	exec(`sassc ${scss} ${css}`)
+	App.resetCss()
+	App.applyCss(css)
 }
 
 // auto reload css
 monitorFile(
-  `${App.configDir}/style`,
-  loadScss,
-  'directory',
+	`${App.configDir}/style`,
+	loadScss,
+	'directory',
 )
 // first css load
 loadScss();
 
 const Bar = Widget.Window({
-  monitor: 0,
-  name: 'bar',
-  class_name: 'bar',
-  exclusivity: 'exclusive',
-  anchor: ['top', 'left', 'right'],
-  child: Widget.CenterBox({
-    class_name: 'outer_padding',
-    start_widget: Widget.Box({
-      children: [
-        Workspaces,
-        FocusedWindow,
-      ]
-    }),
-    center_widget: Widget.Box({
-      spacing: 20,
-      children: [
-        Date,
-        MediaPlayer,
-      ]
-    }),
-    end_widget: Widget.Box({
-      halign: Gtk.Align.END,
-      spacing: 20,
-      children: [
-        Volume,
-        Network,
-        Battery,
-        SysTray
-      ]
-    }),
-  }),
+	monitor: 0,
+	name: 'bar',
+	class_name: 'bar',
+	exclusivity: 'exclusive',
+	anchor: ['bottom', 'left', 'right'],
+	child: Widget.CenterBox({
+		class_name: 'outer_padding',
+		start_widget: Widget.Box({
+			children: [
+				Workspaces,
+				FocusedWindow,
+			]
+		}),
+		center_widget: Widget.Box({
+			spacing: 20,
+			children: [
+				Date,
+				MediaPlayer,
+			]
+		}),
+		end_widget: Widget.Box({
+			halign: Gtk.Align.END,
+			spacing: 20,
+			children: [
+				Volume,
+				Network,
+				Battery,
+				SysTray
+			]
+		}),
+	}),
 });
 
 

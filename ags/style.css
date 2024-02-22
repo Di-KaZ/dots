@@ -1,3 +1,6 @@
+* {
+  font-family: "Monaspace Radon"; }
+
 button {
   margin: 0px;
   padding: 0px;
@@ -49,7 +52,7 @@ scale contents {
     padding: 3px;
     margin-top: 2px;
     margin-bottom: 2px;
-    opacity: .6; }
+    opacity: 0.6; }
 
 .media_player .button {
   padding: 0px;
@@ -61,4 +64,4 @@ scale contents {
 
 .media_player .artists {
   font-size: 10px;
-  opacity: .6; }
+  opacity: 0.6; }

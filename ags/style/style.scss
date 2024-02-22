@@ -1,3 +1,7 @@
+* {
+  font-family: "Monaspace Radon";
+}
+
 button {
   margin: 0px;
   padding: 0px;
@@ -37,7 +41,7 @@ scale {
 }
 
 .bar {
-  background-color: rgba(25, 27, 41, .85);
+  background-color: rgba(25, 27, 41, 0.85);
 }
 
 .outer_padding {
@@ -61,7 +65,7 @@ scale {
     padding: 3px;
     margin-top: 2px;
     margin-bottom: 2px;
-    opacity: .6;
+    opacity: 0.6;
   }
 
   border-radius: 20px;
@@ -70,8 +74,9 @@ scale {
 
   background-color: white;
 
-  transition: padding-left ease-in-out 300ms,
-  background-color ease-in-out 200ms;
+  transition:
+    padding-left ease-in-out 300ms,
+    background-color ease-in-out 200ms;
 }
 
 .media_player {
@@ -87,6 +92,6 @@ scale {
 
   .artists {
     font-size: 10px;
-    opacity: .6;
+    opacity: 0.6;
   }
 }
